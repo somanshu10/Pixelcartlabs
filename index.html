@@ -107,7 +107,7 @@
                 <a href="#" class="-m-1.5 p-1.5 inline-flex items-center gap-3">
                     <img src="https://cdn.shopify.com/shopifycloud/brochure/assets/logo-shopify-bag-small-58b8dcfc6d4d49dcde228b8a236503d0f1e4db04f8c23f04b7416d4e9e5b07dc.png"
                         alt="logo" class="h-8 w-auto" />
-                    <span class="font-semibold text-gray-900">Somanshu — Shopify Dev</span>
+                    <!-- <span class="font-semibold text-gray-900">Somanshu — Shopify Dev</span> -->
                 </a>
             </div>
 
@@ -324,11 +324,11 @@
     <header class="absolute inset-x-0 top-0 z-50">
         <nav aria-label="Global" class="flex items-center justify-between p-6 lg:px-8">
             <div class="flex lg:flex-1">
-                <a href="#" class="-m-1.5 p-1.5">
+                <!-- <a href="#" class="-m-1.5 p-1.5">
                     <span class="sr-only">Your Company</span>
                     <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="Logo"
                         class="h-8 w-auto" />
-                </a>
+                </a> -->
             </div>
             <div class="flex lg:hidden">
                 <button type="button" command="show-modal" commandfor="mobile-menu"
@@ -340,16 +340,16 @@
                     </svg>
                 </button>
             </div>
-            <div class="hidden lg:flex lg:gap-x-12">
+            <!-- <div class="hidden lg:flex lg:gap-x-12">
                 <a href="#" class="text-sm font-semibold text-gray-900">Product</a>
                 <a href="#" class="text-sm font-semibold text-gray-900">Features</a>
                 <a href="#" class="text-sm font-semibold text-gray-900">Marketplace</a>
                 <a href="#" class="text-sm font-semibold text-gray-900">Company</a>
-            </div>
-            <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+            </div> -->
+            <!-- <div class="hidden lg:flex lg:flex-1 lg:justify-end">
                 <a href="#" class="text-sm font-semibold text-gray-900">Log in <span
                         aria-hidden="true">&rarr;</span></a>
-            </div>
+            </div> -->
         </nav>
 
         <!-- Mobile Menu -->
@@ -359,11 +359,11 @@
                     <el-dialog-panel
                         class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                         <div class="flex items-center justify-between">
-                            <a href="#" class="-m-1.5 p-1.5">
+                            <!-- <a href="#" class="-m-1.5 p-1.5">
                                 <span class="sr-only">Your Company</span>
                                 <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
                                     alt="Logo" class="h-8 w-auto" />
-                            </a>
+                            </a> -->
                             <button type="button" command="close" commandfor="mobile-menu"
                                 class="-m-2.5 rounded-md p-2.5 text-gray-700">
                                 <span class="sr-only">Close menu</span>
@@ -376,19 +376,19 @@
                         <div class="mt-6 flow-root">
                             <div class="-my-6 divide-y divide-gray-500/10">
                                 <div class="space-y-2 py-6">
-                                    <a href="#"
-                                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Product</a>
-                                    <a href="#"
-                                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Features</a>
-                                    <a href="#"
-                                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Marketplace</a>
-                                    <a href="#"
-                                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Company</a>
+                                    <a href="#features"
+                                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50" >Features</a>
+                                    <a href="#portfolio"
+                                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Portfolio</a>
+                                        <a href="#process"
+                                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Process</a>
+                                        <a href="#testamonials"
+                                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Client Feedback</a>
+                                    <a href="#pricing"
+                                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Pricing</a>
                                 </div>
                                 <div class="py-6">
-                                    <a href="#"
-                                        class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold text-gray-900 hover:bg-gray-50">Log
-                                        in</a>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -806,6 +806,17 @@
             </div>
         </div>
     </footer>
+    <script>
+    // Auto-close mobile menu when a link is clicked
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        const dialog = document.getElementById('mobile-menu');
+        if (dialog && dialog.open) {
+          dialog.close();
+        }
+      });
+    });
+  </script>
     <!-- Your Code Ends Here -->
 </body>
 
