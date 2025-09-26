@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopify Web Development - Somanshu</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        :root {
+            --accent: #082041;
+            /* dark blue */
+        }
+
+        /* Accent utility classes (fallback so we don't rely on Tailwind arbitrary var parsing) */
+        .bg-accent {
+            background-color: var(--accent);
+        }
+
+        .text-accent {
+            color: var(--accent);
+        }
+
+        .border-accent {
+            border-color: var(--accent);
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            color: #fff;
+        }
+
+        .btn-accent:hover {
+            opacity: 0.95;
+            transform: translateY(-2px);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 1s ease-in-out both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 0.9s ease-in-out both;
+        }
+
+        /* Layout helpers */
+        .scroll-offset {
+            scroll-margin-top: 96px;
+        }
+
+        /* Carousel scrollbar */
+        .carousel::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        .carousel::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 999px;
+        }
+
+        /* Small fallback for large screens when tailwind isn't loaded */
+        @media (min-width: 1024px) {
+            .lg-fix-max-width {
+                max-width: 1200px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        /* Back to top */
+        .back-to-top {
+            transition: transform .18s ease, opacity .18s ease;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-800">
+    <!-- Sticky header -->
+    <header class="fixed inset-x-0 top-0 z-50 bg-white shadow-sm">
+        <nav class="flex items-center justify-between p-4 lg:p-6 lg:px-8">
+            <div class="flex items-center gap-3">
+                <a href="#" class="-m-1.5 p-1.5 inline-flex items-center gap-3">
+                    <img src="https://cdn.shopify.com/shopifycloud/brochure/assets/logo-shopify-bag-small-58b8dcfc6d4d49dcde228b8a236503d0f1e4db04f8c23f04b7416d4e9e5b07dc.png"
+                        alt="logo" class="h-8 w-auto" />
+                    <span class="font-semibold text-gray-900">Somanshu — Shopify Dev</span>
+                </a>
+            </div>
+
+            <div class="hidden lg:flex lg:gap-x-6 lg:items-center">
+                <a href="#features" class="text-sm font-medium text-gray-700 hover:text-accent">Features</a>
+                <a href="#portfolio" class="text-sm font-medium text-gray-700 hover:text-accent">Portfolio</a>
+                <a href="#process" class="text-sm font-medium text-gray-700 hover:text-accent">Process</a>
+                <a href="#pricing" class="text-sm font-medium text-gray-700 hover:text-accent">Pricing</a>
+                <a href="#faq" class="text-sm font-medium text-gray-700 hover:text-accent">FAQ</a>
+                <a href="#testimonials" class="text-sm font-medium text-gray-700 hover:text-accent">Testimonials</a>
+            </div>
+
+            <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+                <a href="#cta" class="inline-block rounded-md px-4 py-2 text-sm font-semibold btn-accent shadow">Book
+                    Audit</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pt-28">
+        <!-- Hero -->
+        <section class="relative px-6 lg:px-8 text-center">
+            <div class="mx-auto max-w-2xl py-24 sm:py-32 animate-fadeIn">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900">Turn Your
+                    Shopify Store Into a 24/7 Sales Machine</h1>
+                <p class="mt-6 text-lg sm:text-xl text-gray-600">Custom-built, conversion-first Shopify stores — faster
+                    pages, higher AOV, fewer abandoned carts.</p>
+                <div class="mt-10 flex items-center justify-center gap-4">
+                    <a href="#cta"
+                        class="rounded-md px-6 py-3 text-base font-semibold btn-accent shadow transform transition-transform hover:-translate-y-0.5">Book
+                        Free Store Audit</a>
+                    <a href="#features" class="text-base font-medium text-gray-700 hover:underline">See features →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section id="features" class="scroll-offset bg-white py-20 sm:py-24">
+            <div class="mx-auto lg-fix-max-width px-6 lg:px-8">
+                <div class="mx-auto max-w-2xl text-center">
+                    <h2 class="text-base font-semibold text-accent">Why choose Somanshu</h2>
+                    <p class="mt-2 text-3xl md:text-4xl font-bold tracking-tight text-gray-900">Shopify development that
+                        actually converts</p>
+                    <p class="mt-4 text-gray-600">Design, speed and conversion optimization combined — for store owners
+                        who want measurable growth.</p>
+                </div>
+
+                <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                    <div class="rounded-lg border p-6 hover:shadow-lg transition-shadow animate-fadeInUp">
+                        <h3 class="font-semibold text-lg">Performance</h3>
+                        <p class="mt-2 text-sm text-gray-600">Speed audits, theme lightening, responsive image
+                            optimizations.</p>
+                    </div>
+                    <div class="rounded-lg border p-6 hover:shadow-lg transition-shadow animate-fadeInUp">
+                        <h3 class="font-semibold text-lg">Design that sells</h3>
+                        <p class="mt-2 text-sm text-gray-600">Product pages and UX that increase conversions and trust.
+                        </p>
+                    </div>
+                    <div class="rounded-lg border p-6 hover:shadow-lg transition-shadow animate-fadeInUp">
+                        <h3 class="font-semibold text-lg">Checkout optimization</h3>
+                        <p class="mt-2 text-sm text-gray-600">Lower friction, faster checkout, fewer abandoned carts.
+                        </p>
+                    </div>
+                    <div class="rounded-lg border p-6 hover:shadow-lg transition-shadow animate-fadeInUp">
+                        <h3 class="font-semibold text-lg">Growth-focused</h3>
+                        <p class="mt-2 text-sm text-gray-600">Upsells, bundles and post-purchase flows to raise AOV.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio (centered carousel with cards restored) -->
+        <section id="portfolio" class="scroll-offset bg-gray-50 py-20 sm:py-24">
+            <div class="mx-auto lg-fix-max-width px-6 lg:px-8">
+                <div class="mx-auto max-w-2xl text-center">
+                    <h2 class="text-base font-semibold text-accent">Portfolio</h2>
+                    <p class="mt-2 text-3xl md:text-4xl font-bold tracking-tight text-gray-900">Selected Shopify
+                        projects</p>
+                    <p class="mt-4 text-gray-600">Real stores. Real results — screenshots and short outcomes below.</p>
+                </div>
+
+                <div class="mt-12 flex justify-center">
+                    <div class="w-full max-w-4xl carousel flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory px-2">
+                        <!-- card 1 -->
+                        <figure
+                            class="snap-center flex-none w-80 rounded-lg bg-white shadow-lg overflow-hidden hover:scale-105 transition-transform">
+                            <img src="https://dummyimage.com/720x480/082041/ffffff&text=Skincare+Brand"
+                                alt="Skincare Brand" class="w-full h-44 object-cover" />
+                            <figcaption class="p-4">
+                                <h3 class="font-semibold text-gray-900">Skincare Brand</h3>
+                                <p class="mt-2 text-sm text-gray-600">3x conversion uplift after landing page redesign &
+                                    A/B testing.</p>
+                                <p class="mt-3 text-xs text-gray-400">Dawn theme • Custom sections • Upsell flows</p>
+                            </figcaption>
+                        </figure>
+
+                        <!-- card 2 -->
+                        <figure
+                            class="snap-center flex-none w-80 rounded-lg bg-white shadow-lg overflow-hidden hover:scale-105 transition-transform">
+                            <img src="https://dummyimage.com/720x480/082041/ffffff&text=Apparel+Store"
+                                alt="Apparel Store" class="w-full h-44 object-cover" />
+                            <figcaption class="p-4">
+                                <h3 class="font-semibold text-gray-900">Apparel Store</h3>
+                                <p class="mt-2 text-sm text-gray-600">Mobile-first redesign + checkout fixes — cart
+                                    abandonment down 18%.</p>
+                                <p class="mt-3 text-xs text-gray-400">Custom theme • Lazy-loading images</p>
+                            </figcaption>
+                        </figure>
+
+                        <!-- card 3 -->
+                        <figure
+                            class="snap-center flex-none w-80 rounded-lg bg-white shadow-lg overflow-hidden hover:scale-105 transition-transform">
+                            <img src="https://dummyimage.com/720x480/082041/ffffff&text=Fitness+Products"
+                                alt="Fitness Products" class="w-full h-44 object-cover" />
+                            <figcaption class="p-4">
+                                <h3 class="font-semibold text-gray-900">Fitness Products</h3>
+                                <p class="mt-2 text-sm text-gray-600">Upsell funnels + PDP improvements increased AOV by
+                                    22%.</p>
+                                <p class="mt-3 text-xs text-gray-400">Shopify Scripts • Bundles</p>
+                            </figcaption>
+                        </figure>
+
+                        <!-- card 4 -->
+                        <figure
+                            class="snap-center flex-none w-80 rounded-lg bg-white shadow-lg overflow-hidden hover:scale-105 transition-transform">
+                            <img src="https://dummyimage.com/720x480/082041/ffffff&text=D2C+Migration"
+                                alt="D2C Migration" class="w-full h-44 object-cover" />
+                            <figcaption class="p-4">
+                                <h3 class="font-semibold text-gray-900">Direct-to-Consumer</h3>
+                                <p class="mt-2 text-sm text-gray-600">Site migration + SEO cleanup improved organic
+                                    sessions & transactions.</p>
+                                <p class="mt-3 text-xs text-gray-400">Liquid customizations • SEO fixes</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process -->
+        <section id="process" class="scroll-offset bg-white py-20 sm:py-24">
+            <div class="mx-auto lg-fix-max-width px-6 lg:px-8">
+                <div class="mx-auto max-w-2xl text-center">
+                    <h2 class="text-base font-semibold text-accent">Process</h2>
+                    <p class="mt-2 text-3xl md:text-4xl font-bold tracking-tight text-gray-900">How we'll work together
+                    </p>
+                    <p class="mt-3 text-gray-600">A predictable 4-step process so every launch is smooth and measurable.
+                    </p>
+                </div>
+
+                <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                    <div class="p-6 bg-gray-50 rounded-lg shadow animate-fadeInUp">
+                        <h4 class="font-semibold">Audit</h4>
+                        <p class="mt-2 text-sm text-gray-600">15-point assessment and prioritized fixes.</p>
+                    </div>
+                    <div class="p-6 bg-gray-50 rounded-lg shadow animate-fadeInUp">
+                        <h4 class="font-semibold">Strategy</h4>
+                        <p class="mt-2 text-sm text-gray-600">A clear roadmap with revenue-focused recommendations.</p>
+                    </div>
+                    <div class="p-6 bg-gray-50 rounded-lg shadow animate-fadeInUp">
+                        <h4 class="font-semibold">Build</h4>
+                        <p class="mt-2 text-sm text-gray-600">Fast, test-driven development with staging preview.</p>
+                    </div>
+                    <div class="p-6 bg-gray-50 rounded-lg shadow animate-fadeInUp">
+                        <h4 class="font-semibold">Launch</h4>
+                        <p class="mt-2 text-sm text-gray-600">Launch and 30 days of support to stabilize results.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section id="pricing" class="scroll-offset bg-gray-900 px-6 py-16 sm:py-20 lg:px-8">
+            <div class="mx-auto max-w-4xl text-center">
+                <h2 class="text-base font-semibold text-accent">Pricing</h2>
+                <p class="mt-2 text-3xl md:text-4xl font-bold tracking-tight text-white">Simple, transparent plans</p>
+                <p class="mx-auto mt-4 max-w-2xl text-gray-300">Start with an audit or choose the full rebuild — clear
+                    deliverables, clear pricing.</p>
+
+                <div class="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
+                    <div class="rounded-3xl bg-white/5 p-6 ring-1 ring-white/10">
+                        <h3 class="text-lg font-semibold text-accent">Audit</h3>
+                        <p class="mt-3 text-3xl font-bold text-white">$97</p>
+                        <p class="mt-3 text-gray-300">15-point audit with prioritized action plan.</p>
+                        <ul class="mt-4 text-sm text-gray-300 space-y-2">
+                            <li>Speed & performance</li>
+                            <li>Conversion flow review</li>
+                            <li>App & theme recommendations</li>
+                        </ul>
+                        <div class="mt-6"><a href="#cta" class="inline-block rounded-md px-4 py-2 btn-accent">Get
+                                Audit</a></div>
+                    </div>
+                    <div class="rounded-3xl bg-gray-800 p-6 ring-1 ring-white/10">
+                        <h3 class="text-lg font-semibold text-accent">Full Rebuild</h3>
+                        <p class="mt-3 text-3xl font-bold text-white">$997</p>
+                        <p class="mt-3 text-gray-300">Complete design + development for fast growth.</p>
+                        <ul class="mt-4 text-sm text-gray-300 space-y-2">
+                            <li>Custom theme & sections</li>
+                            <li>Conversion-centered PDPs</li>
+                            <li>30 days support</li>
+                        </ul>
+                        <div class="mt-6"><a href="#cta" class="inline-block rounded-md px-4 py-2 btn-accent">Book
+                                Rebuild</a></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="scroll-offset bg-gray-50 py-16 sm:py-20">
+            <div class="mx-auto max-w-4xl px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-base font-semibold text-accent">FAQ</h2>
+                    <p class="mt-2 text-3xl md:text-4xl font-bold tracking-tight text-gray-900">Frequently asked
+                        questions</p>
+                </div>
+                <div class="mt-8 space-y-4">
+                    <details class="bg-white p-5 rounded-lg shadow">
+                        <summary class="font-medium cursor-pointer">How fast are audits delivered?</summary>
+                        <p class="mt-2 text-sm text-gray-600">Audits delivered within 48 hours. Rebuilds usually 1–2
+                            weeks depending on scope.</p>
+                    </details>
+                    <details class="bg-white p-5 rounded-lg shadow">
+                        <summary class="font-medium cursor-pointer">Can you optimize my existing theme?</summary>
+                        <p class="mt-2 text-sm text-gray-600">Often yes — we optimize what’s already working, or rebuild
+                            if the theme is outdated.</p>
+                    </details>
+                    <details class="bg-white p-5 rounded-lg shadow">
+                        <summary class="font-medium cursor-pointer">Is there post-launch support?</summary>
+                        <p class="mt-2 text-sm text-gray-600">Yes — 30 days included with full rebuilds; retainers
+                            available.</p>
+                    </details>
+                    <details class="bg-white p-5 rounded-lg shadow">
+                        <summary class="font-medium cursor-pointer">What if I’m not satisfied?</summary>
+                        <p class="mt-2 text-sm text-gray-600">Satisfaction guarantee: fix the issues or refund the
+                            balance per agreement.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section id="testimonials" class="scroll-offset bg-white py-16 sm:py-20">
+            <div class="mx-auto lg-fix-max-width px-6 lg:px-8 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">What clients say</h2>
+                <p class="mt-3 text-gray-600">Trusted by founders and small brands.</p>
+
+                <div class="mt-8 grid gap-6 md:grid-cols-3">
+                    <blockquote class="rounded-lg bg-gray-50 p-6 shadow-md text-left">
+                        <p class="text-gray-700">“Before working with Somanshu, my store was clunky and barely making
+                            sales. Within 2 weeks, our CR jumped from 1.2% → 3.9% — project paid for itself.”</p>
+                        <footer class="mt-4 text-sm font-semibold text-gray-900">— Emma R., Skincare Founder</footer>
+                    </blockquote>
+
+                    <blockquote class="rounded-lg bg-gray-50 p-6 shadow-md text-left">
+                        <p class="text-gray-700">“He fixed in days what an agency couldn't in months. Mobile conversions
+                            improved and checkout issues were resolved quickly.”</p>
+                        <footer class="mt-4 text-sm font-semibold text-gray-900">— Josh P., Apparel Brand</footer>
+                    </blockquote>
+
+                    <blockquote class="rounded-lg bg-gray-50 p-6 shadow-md text-left">
+                        <p class="text-gray-700">“The audit highlighted low-hanging wins; the rebuild doubled our repeat
+                            purchases. Communication was excellent.”</p>
+                        <footer class="mt-4 text-sm font-semibold text-gray-900">— Priya K., D2C Founder</footer>
+                    </blockquote>
+                </div>
+
+                <div class="mt-8 flex items-center justify-center gap-10">
+                    <div class="text-center text-sm text-gray-500">
+                        <div class="text-2xl font-semibold text-gray-900">+3x</div>
+                        <div>Avg conversion uplift</div>
+                    </div>
+                    <div class="text-center text-sm text-gray-500">
+                        <div class="text-2xl font-semibold text-gray-900">20%+</div>
+                        <div>AOV increase</div>
+                    </div>
+                    <div class="text-center text-sm text-gray-500">
+                        <div class="text-2xl font-semibold text-gray-900">30+</div>
+                        <div>Stores launched</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section id="cta" class="scroll-offset bg-accent px-6 py-16 sm:py-20 text-center">
+            <div class="mx-auto max-w-3xl">
+                <h2 class="text-2xl md:text-3xl font-bold text-white">Stop losing sales — claim a free 15-minute audit
+                </h2>
+                <p class="mt-3 text-white/90">Limited slots to keep quality high. You’ll get a straight action plan you
+                    can implement.</p>
+                <div class="mt-6"><a href="mailto:hello@yourdomain.com"
+                        class="inline-block rounded-md px-6 py-3 bg-white text-accent font-semibold">Email to book</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="mx-auto lg-fix-max-width px-6 lg:px-8">
+            <div class="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+                <div>
+                    <div class="flex items-center gap-3">
+                        <img src="https://cdn.shopify.com/shopifycloud/brochure/assets/logo-shopify-bag-small-58b8dcfc6d4d49dcde228b8a236503d0f1e4db04f8c23f04b7416d4e9e5b07dc.png"
+                            alt="logo" class="h-8" />
+                        <span class="font-semibold text-white">Somanshu — Shopify Dev</span>
+                    </div>
+                    <p class="mt-3 text-sm text-gray-400">I build fast, conversion-focused Shopify stores for brands
+                        that want measurable growth.</p>
+                    <p class="mt-3 text-sm text-gray-400">hello@yourdomain.com • +91 98765 43210</p>
+                </div>
+
+                <nav class="flex gap-6">
+                    <a href="#features" class="text-sm hover:text-white">Features</a>
+                    <a href="#portfolio" class="text-sm hover:text-white">Portfolio</a>
+                    <a href="#pricing" class="text-sm hover:text-white">Pricing</a>
+                    <a href="#faq" class="text-sm hover:text-white">FAQ</a>
+                </nav>
+            </div>
+
+            <div
+                class="mt-8 border-t border-gray-800 pt-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <p class="text-sm text-gray-500">© <span id="year"></span> Somanshu. All rights reserved.</p>
+                <div class="flex items-center gap-4">
+                    <a href="#" class="text-sm text-gray-400 hover:text-white">Privacy</a>
+                    <a href="#" class="text-sm text-gray-400 hover:text-white">Terms</a>
+                    <a href="#" class="text-sm text-gray-400 hover:text-white">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <button id="backToTop" aria-label="Back to top"
+        class="back-to-top fixed right-6 bottom-8 hidden rounded-full bg-accent p-3 shadow-lg text-white">↑</button>
+
+    <script>
+        // Footer year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Back to top
+        const backBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 600) backBtn.classList.remove('hidden'); else backBtn.classList.add('hidden');
+        });
+        backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // Keyboard focus for carousel items
+        document.querySelectorAll('.carousel > *').forEach((el) => { el.setAttribute('tabindex', '0'); });
+    </script>
+</body>
+
+</html>
