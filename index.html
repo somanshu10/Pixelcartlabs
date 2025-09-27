@@ -96,6 +96,21 @@
         .back-to-top {
             transition: transform .18s ease, opacity .18s ease;
         }
+        /* Smooth card hover */
+.hover-tilt:hover {
+  transform: translateY(-6px) scale(1.02);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.85; }
+}
+.pulse {
+  animation: pulse 1.5s infinite;
+}
+
     </style>
 </head>
 
@@ -141,7 +156,55 @@
         </section>
 
         <!-- Features -->
-        <section id="features" class="scroll-offset bg-white py-20 sm:py-24">
+            <!-- What We Provide — Updated Tailwind HTML snippet -->
+<section id="what-we-provide" class="scroll-offset bg-gray-50 py-20 sm:py-24">
+  <div class="mx-auto lg-fix-max-width px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-base font-semibold text-accent">What we provide</h2>
+      <p class="mt-2 text-3xl md:text-4xl font-bold tracking-tight text-gray-900">Everything your store needs to grow</p>
+      <p class="mt-4 text-gray-600">From fast, secure storefronts to conversion-focused product pages and long-term support — we cover the full lifecycle.</p>
+    </div>
+
+    <!-- Grid cards -->
+    <div class="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <!-- Card -->
+      <div class="rounded-2xl bg-white p-8 shadow hover:shadow-lg transition-shadow">
+        <h3 class="text-lg font-semibold text-gray-900">Custom themes & sections</h3>
+        <p class="mt-3 text-sm text-gray-600">Pixel-perfect themes built to match your brand and convert visitors into customers.</p>
+      </div>
+
+      <div class="rounded-2xl bg-white p-8 shadow hover:shadow-lg transition-shadow">
+        <h3 class="text-lg font-semibold text-gray-900">Speed & performance</h3>
+        <p class="mt-3 text-sm text-gray-600">Audits, optimizations and theme improvements for blazing fast load times.</p>
+      </div>
+
+      <div class="rounded-2xl bg-white p-8 shadow hover:shadow-lg transition-shadow">
+        <h3 class="text-lg font-semibold text-gray-900">Conversion-focused product pages</h3>
+        <p class="mt-3 text-sm text-gray-600">Optimized product layouts, trust signals, and call‑to‑actions that increase add‑to‑cart rates.</p>
+      </div>
+
+      <div class="rounded-2xl bg-white p-8 shadow hover:shadow-lg transition-shadow">
+        <h3 class="text-lg font-semibold text-gray-900">Checkout & cart optimization</h3>
+        <p class="mt-3 text-sm text-gray-600">Frictionless checkout flows and smart upsells to reduce abandonment and boost revenue.</p>
+      </div>
+
+      <div class="rounded-2xl bg-white p-8 shadow hover:shadow-lg transition-shadow">
+        <h3 class="text-lg font-semibold text-gray-900">SEO & migrations</h3>
+        <p class="mt-3 text-sm text-gray-600">Safe migrations and SEO improvements so you keep and grow organic traffic.</p>
+      </div>
+
+      <div class="rounded-2xl bg-white p-8 shadow hover:shadow-lg transition-shadow">
+        <h3 class="text-lg font-semibold text-gray-900">Post‑launch support</h3>
+        <p class="mt-3 text-sm text-gray-600">30 days included with rebuilds and ongoing retainers for long‑term growth.</p>
+      </div>
+    </div>
+
+    <!-- <div class="mt-12 text-center">
+      <a href="#cta" class="inline-block rounded-md px-6 py-3 btn-accent shadow font-semibold">Get a free audit</a>
+    </div> -->
+  </div>
+</section>
+        <!-- <section id="features" class="scroll-offset bg-white py-20 sm:py-24">
             <div class="mx-auto lg-fix-max-width px-6 lg:px-8">
                 <div class="mx-auto max-w-2xl text-center">
                     <h2 class="text-base font-semibold text-accent">Why choose Somanshu</h2>
@@ -173,7 +236,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
 
         <!-- Portfolio (centered carousel with cards restored) -->
         <section id="portfolio" class="scroll-offset bg-gray-50 py-20 sm:py-24">
@@ -188,8 +251,8 @@
                 <div class="mt-12 flex justify-center">
                     <div class="w-full max-w-4xl carousel flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory px-2">
                         <!-- card 1 -->
-                        <figure
-                            class="snap-center flex-none w-80 rounded-lg bg-white shadow-lg overflow-hidden hover:scale-105 transition-transform">
+                        <figure class="hover-tilt snap-center flex-none w-80 rounded-lg bg-white shadow-lg overflow-hidden transition-transform">
+
                             <img src="https://dummyimage.com/720x480/082041/ffffff&text=Skincare+Brand"
                                 alt="Skincare Brand" class="w-full h-44 object-cover" />
                             <figcaption class="p-4">
@@ -468,54 +531,7 @@
         </div>
     </div>
 
-    <!-- What We Provide — Updated Tailwind HTML snippet -->
-<section id="what-we-provide" class="scroll-offset bg-gray-50 py-20 sm:py-24">
-  <div class="mx-auto lg-fix-max-width px-6 lg:px-8">
-    <div class="mx-auto max-w-2xl text-center">
-      <h2 class="text-base font-semibold text-accent">What we provide</h2>
-      <p class="mt-2 text-3xl md:text-4xl font-bold tracking-tight text-gray-900">Everything your store needs to grow</p>
-      <p class="mt-4 text-gray-600">From fast, secure storefronts to conversion-focused product pages and long-term support — we cover the full lifecycle.</p>
-    </div>
-
-    <!-- Grid cards -->
-    <div class="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-      <!-- Card -->
-      <div class="rounded-2xl bg-white p-8 shadow hover:shadow-lg transition-shadow">
-        <h3 class="text-lg font-semibold text-gray-900">Custom themes & sections</h3>
-        <p class="mt-3 text-sm text-gray-600">Pixel-perfect themes built to match your brand and convert visitors into customers.</p>
-      </div>
-
-      <div class="rounded-2xl bg-white p-8 shadow hover:shadow-lg transition-shadow">
-        <h3 class="text-lg font-semibold text-gray-900">Speed & performance</h3>
-        <p class="mt-3 text-sm text-gray-600">Audits, optimizations and theme improvements for blazing fast load times.</p>
-      </div>
-
-      <div class="rounded-2xl bg-white p-8 shadow hover:shadow-lg transition-shadow">
-        <h3 class="text-lg font-semibold text-gray-900">Conversion-focused product pages</h3>
-        <p class="mt-3 text-sm text-gray-600">Optimized product layouts, trust signals, and call‑to‑actions that increase add‑to‑cart rates.</p>
-      </div>
-
-      <div class="rounded-2xl bg-white p-8 shadow hover:shadow-lg transition-shadow">
-        <h3 class="text-lg font-semibold text-gray-900">Checkout & cart optimization</h3>
-        <p class="mt-3 text-sm text-gray-600">Frictionless checkout flows and smart upsells to reduce abandonment and boost revenue.</p>
-      </div>
-
-      <div class="rounded-2xl bg-white p-8 shadow hover:shadow-lg transition-shadow">
-        <h3 class="text-lg font-semibold text-gray-900">SEO & migrations</h3>
-        <p class="mt-3 text-sm text-gray-600">Safe migrations and SEO improvements so you keep and grow organic traffic.</p>
-      </div>
-
-      <div class="rounded-2xl bg-white p-8 shadow hover:shadow-lg transition-shadow">
-        <h3 class="text-lg font-semibold text-gray-900">Post‑launch support</h3>
-        <p class="mt-3 text-sm text-gray-600">30 days included with rebuilds and ongoing retainers for long‑term growth.</p>
-      </div>
-    </div>
-
-    <div class="mt-12 text-center">
-      <a href="#cta" class="inline-block rounded-md px-6 py-3 btn-accent shadow font-semibold">Get a free audit</a>
-    </div>
-  </div>
-</section>
+ 
 
     <!-- Pricing -->
     <section id="pricing" class="scroll-offset bg-gray-900 px-6 py-16 sm:py-20 lg:px-8">
@@ -677,6 +693,36 @@
         </div>
     </footer>
     <script>
+        // Animate sections on scroll
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("animate-fadeInUp");
+        observer.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.2 }
+);
+
+document.querySelectorAll("section").forEach((sec) => {
+  sec.classList.add("opacity-0"); // start hidden
+  observer.observe(sec);
+});
+
+// Back to top pulse when visible
+window.addEventListener("scroll", () => {
+  const backBtn = document.getElementById("backToTop");
+  if (window.scrollY > 600) {
+    backBtn.classList.remove("hidden");
+    backBtn.classList.add("pulse");
+  } else {
+    backBtn.classList.add("hidden");
+    backBtn.classList.remove("pulse");
+  }
+});
+
     // Auto-close mobile menu when a link is clicked
     document.querySelectorAll('#mobile-menu a').forEach(link => {
       link.addEventListener('click', () => {
