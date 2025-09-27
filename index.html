@@ -110,7 +110,59 @@
 .pulse {
   animation: pulse 1.5s infinite;
 }
+/* ---- Option 2: Rich animations ---- */
 
+/* 1) Animated gradient background (hero) */
+.hero-gradient {
+  background: linear-gradient(110deg, #07162a 0%, #082041 40%, #0b2a42 100%);
+  background-size: 300% 300%;
+  animation: gradientShift 9s linear infinite;
+}
+@keyframes gradientShift { 0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%} }
+
+/* 2) CTA ripple (create element .ripple) */
+.btn-ripple { position:relative; overflow:hidden; }
+.btn-ripple .ripple-el { position:absolute; border-radius:50%; transform:scale(0); opacity:.6; pointer-events:none; }
+
+/* 3) 3D tilt card base */
+.tilt-card { transform-style:preserve-3d; transition: transform .18s ease, box-shadow .18s ease; will-change: transform; }
+.tilt-card:hover { box-shadow: 0 18px 40px rgba(8,32,65,0.18); }
+
+/* 4) Icon micro-bounce */
+.icon-bounce { display:inline-block; transition: transform .22s cubic-bezier(.2,.9,.2,1); }
+.icon-bounce:hover { transform: translateY(-6px) scale(1.05); }
+
+/* 5) Auto-scroll carousel: smooth scroll snap; pause on hover controlled from JS */
+.carousel { scroll-behavior: smooth; }
+
+/* 6) Portfolio reveal: sliding mask using pseudo-element */
+.reveal-mask { position:relative; overflow:hidden; }
+.reveal-mask::after {
+  content:""; position:absolute; left:-120%; top:0; width:120%; height:100%; background:linear-gradient(90deg, #082041, rgba(8,32,65,0));
+  transform:skewX(-10deg); transition: left .9s cubic-bezier(.2,.9,.2,1);
+}
+.reveal-mask.revealed::after { left:120%; }
+
+/* 7) Process line drawing (SVG stroke animation) - expects <svg> with class .proc-line and path stroke-dasharray set in JS */
+.proc-line path { stroke: #082041; stroke-width:2; fill:none; stroke-linecap:round; }
+
+/* 8) Pricing glow for recommended (stronger than opt1) */
+.pricing-glow { position:relative; overflow:visible; }
+.pricing-glow::before {
+  content:""; position:absolute; inset:-8px; border-radius:1rem; background:linear-gradient(90deg,#0b66ff33,#07b39c33); filter:blur(18px); opacity:.5; animation:glowPulse 3.2s infinite;
+}
+@keyframes glowPulse { 0%{opacity:.4}50%{opacity:.85}100%{opacity:.4} }
+
+/* 9) Testimonial slider base */
+.testimonial-slide { opacity:0; transform:translateY(6px); transition:opacity .6s, transform .6s; }
+.testimonial-slide.active { opacity:1; transform:translateY(0); }
+
+/* 10) Custom cursor */
+.custom-cursor { position:fixed; pointer-events:none; z-index:9999; width:14px; height:14px; border-radius:50%; transform:translate(-50%,-50%); transition:transform .12s ease, background .12s ease, width .12s ease, height .12s ease; background:rgba(8,32,65,0.9); mix-blend-mode:normal; }
+
+/* 11) Lazy fade (images) */
+.lazy-img { opacity:0; transform: translateY(8px); transition: opacity .6s ease, transform .6s ease; }
+.lazy-img.loaded { opacity:1; transform: translateY(0); }
     </style>
 </head>
 
@@ -318,19 +370,19 @@
                 </div>
 
                 <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                    <div class="p-6 bg-gray-50 rounded-lg shadow animate-fadeInUp">
+                    <div class="tilt-card p-6 bg-gray-50 rounded-lg shadow animate-fadeInUp">
                         <h4 class="font-semibold">Audit</h4>
                         <p class="mt-2 text-sm text-gray-600">15-point assessment and prioritized fixes.</p>
                     </div>
-                    <div class="p-6 bg-gray-50 rounded-lg shadow animate-fadeInUp">
+                    <div class="tilt-card p-6 bg-gray-50 rounded-lg shadow animate-fadeInUp">
                         <h4 class="font-semibold">Strategy</h4>
                         <p class="mt-2 text-sm text-gray-600">A clear roadmap with revenue-focused recommendations.</p>
                     </div>
-                    <div class="p-6 bg-gray-50 rounded-lg shadow animate-fadeInUp">
+                    <div class="tilt-card p-6 bg-gray-50 rounded-lg shadow animate-fadeInUp">
                         <h4 class="font-semibold">Build</h4>
                         <p class="mt-2 text-sm text-gray-600">Fast, test-driven development with staging preview.</p>
                     </div>
-                    <div class="p-6 bg-gray-50 rounded-lg shadow animate-fadeInUp">
+                    <div class="tilt-card p-6 bg-gray-50 rounded-lg shadow animate-fadeInUp">
                         <h4 class="font-semibold">Launch</h4>
                         <p class="mt-2 text-sm text-gray-600">Launch and 30 days of support to stabilize results.</p>
                     </div>
@@ -541,8 +593,8 @@
             <p class="mx-auto mt-4 max-w-2xl text-gray-300">Start with an audit or choose the full rebuild — clear
                 deliverables, clear pricing.</p>
 
-            <div class="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
-                <div class="rounded-3xl bg-white/5 p-6 ring-1 ring-white/10">
+            <div class=" pricing-glow mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
+                <div class="tilt-card rounded-3xl bg-white/5 p-6 ring-1 ring-white/10">
                     <h3 class="text-lg font-semibold text-accent">Audit</h3>
                     <p class="mt-3 text-3xl font-bold text-white">$97</p>
                     <p class="mt-3 text-gray-300">15-point audit with prioritized action plan.</p>
@@ -551,10 +603,9 @@
                         <li>Conversion flow review</li>
                         <li>App & theme recommendations</li>
                     </ul>
-                    <div class="mt-6"><a href="#cta" class="inline-block rounded-md px-4 py-2 btn-accent">Get
-                            Audit</a></div>
+                    
                 </div>
-                <div class="rounded-3xl bg-gray-800 p-6 ring-1 ring-white/10">
+                <div class="tilt-card rounded-3xl bg-gray-800 p-6 ring-1 ring-white/10">
                     <h3 class="text-lg font-semibold text-accent">Full Rebuild</h3>
                     <p class="mt-3 text-3xl font-bold text-white">$997</p>
                     <p class="mt-3 text-gray-300">Complete design + development for fast growth.</p>
@@ -563,10 +614,10 @@
                         <li>Conversion-centered PDPs</li>
                         <li>30 days support</li>
                     </ul>
-                    <div class="mt-6"><a href="#cta" class="inline-block rounded-md px-4 py-2 btn-accent">Book
-                            Rebuild</a></div>
+                    
                 </div>
             </div>
+            <div class="mt-6 btn-ripple"><a href="#cta" class="inline-block rounded-md px-4 py-2 btn-accent">Contact</a></div>
         </div>
     </section>
 
@@ -610,19 +661,19 @@
             <p class="mt-3 text-gray-600">Trusted by founders and small brands.</p>
 
             <div class="mt-8 grid gap-6 md:grid-cols-3">
-                <blockquote class="rounded-lg bg-gray-50 p-6 shadow-md text-left">
+                <blockquote class="tilt-card rounded-lg bg-gray-50 p-6 shadow-md text-left">
                     <p class="text-gray-700">“Before working with Somanshu, my store was clunky and barely making
                         sales. Within 2 weeks, our CR jumped from 1.2% → 3.9% — project paid for itself.”</p>
                     <footer class="mt-4 text-sm font-semibold text-gray-900">— Emma R., Skincare Founder</footer>
                 </blockquote>
 
-                <blockquote class="rounded-lg bg-gray-50 p-6 shadow-md text-left">
+                <blockquote class="tilt-card rounded-lg bg-gray-50 p-6 shadow-md text-left">
                     <p class="text-gray-700">“He fixed in days what an agency couldn't in months. Mobile conversions
                         improved and checkout issues were resolved quickly.”</p>
                     <footer class="mt-4 text-sm font-semibold text-gray-900">— Josh P., Apparel Brand</footer>
                 </blockquote>
 
-                <blockquote class="rounded-lg bg-gray-50 p-6 shadow-md text-left">
+                <blockquote class="tilt-card rounded-lg bg-gray-50 p-6 shadow-md text-left">
                     <p class="text-gray-700">“The audit highlighted low-hanging wins; the rebuild doubled our repeat
                         purchases. Communication was excellent.”</p>
                     <footer class="mt-4 text-sm font-semibold text-gray-900">— Priya K., D2C Founder</footer>
@@ -732,6 +783,164 @@ window.addEventListener("scroll", () => {
         }
       });
     });
+   (function(){
+  const words = document.querySelectorAll(".tw-word");
+  if (words.length) {
+    let idx = 0;
+    function showNext() {
+      if (idx >= words.length) return;
+      const el = words[idx++];
+      el.style.opacity = "1";
+      el.style.transform = "translateY(0)";
+      setTimeout(showNext, 120);
+    }
+    setTimeout(showNext, 200);
+  }
+})();
+
+/* 2) CTA ripple effect (attach to buttons with .btn-ripple) */
+(function(){
+  document.addEventListener('click', function(e){
+    const btn = e.target.closest('.btn-ripple');
+    if (!btn) return;
+    const rect = btn.getBoundingClientRect();
+    const circle = document.createElement('span');
+    circle.className = 'ripple-el';
+    const size = Math.max(rect.width, rect.height) * 1.6;
+    circle.style.width = circle.style.height = size + 'px';
+    circle.style.left = (e.clientX - rect.left - size/2) + 'px';
+    circle.style.top = (e.clientY - rect.top - size/2) + 'px';
+    circle.style.background = 'rgba(255,255,255,0.14)';
+    circle.style.transition = 'transform .7s ease, opacity .7s ease';
+    btn.appendChild(circle);
+    requestAnimationFrame(()=> circle.style.transform = 'scale(1.05)');
+    setTimeout(()=> { circle.style.opacity = '0'; }, 350);
+    setTimeout(()=> circle.remove(), 800);
+  });
+})();
+
+/* 3) 3D tilt effect for .tilt-card elements */
+(function(){
+  const cards = document.querySelectorAll('.tilt-card');
+  cards.forEach(card=>{
+    const rect = () => card.getBoundingClientRect();
+    function handle(e){
+      const r = rect();
+      const px = (e.clientX - r.left) / r.width;
+      const py = (e.clientY - r.top) / r.height;
+      const rx = (py - 0.5) * 8; // rotateX
+      const ry = (px - 0.5) * -12; // rotateY
+      card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.01)`;
+    }
+    function out(){ card.style.transform = ''; }
+    card.addEventListener('mousemove', handle);
+    card.addEventListener('mouseleave', out);
+  });
+})();
+
+/* 4) Auto-scroll carousel (pause on hover) - uses horizontal scrollLeft */
+(function(){
+  const car = document.querySelector('.carousel');
+  if (!car) return;
+  let raf, speed = 0.22; // px per ms - adjust for speed
+  let running = true;
+  function step(ts){
+    if (!car._last) car._last = ts;
+    const dt = ts - car._last;
+    if (running) car.scrollLeft += dt * speed;
+    car._last = ts;
+    // wrap-around when reaching end
+    if (car.scrollLeft + car.clientWidth >= car.scrollWidth - 2) car.scrollLeft = 0;
+    raf = requestAnimationFrame(step);
+  }
+  raf = requestAnimationFrame(step);
+  car.addEventListener('mouseenter', ()=> running = false);
+  car.addEventListener('mouseleave', ()=> running = true);
+})();
+
+/* 5) Portfolio reveal with .reveal-mask (IntersectionObserver) */
+(function(){
+  const items = document.querySelectorAll('.reveal-mask');
+  const ob = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if (e.isIntersecting) {
+        e.target.classList.add('revealed');
+        ob.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.35});
+  items.forEach(i=>ob.observe(i));
+})();
+
+/* 6) Process line draw (assumes <svg class="proc-line"> has paths) */
+(function(){
+  const svgs = document.querySelectorAll('.proc-line');
+  svgs.forEach(svg=>{
+    const paths = svg.querySelectorAll('path');
+    paths.forEach(p=>{
+      const len = p.getTotalLength();
+      p.style.strokeDasharray = len;
+      p.style.strokeDashoffset = len;
+    });
+    const ob = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if (e.isIntersecting) {
+          paths.forEach((p,i)=> {
+            p.style.transition = `stroke-dashoffset ${0.8 + i*0.18}s cubic-bezier(.2,.9,.2,1)`;
+            p.style.strokeDashoffset = 0;
+          });
+          ob.unobserve(e.target);
+        }
+      });
+    }, {threshold:0.2});
+    ob.observe(svg);
+  });
+})();
+
+/* 7) Pricing glow - no JS required (add .pricing-glow to the card) */
+
+/* 8) Testimonial slider (auto-rotate) - mark slides with .testimonial-slide inside #testimonials */
+(function(){
+  const root = document.getElementById('testimonials');
+  if (!root) return;
+  const slides = root.querySelectorAll('.testimonial-slide');
+  if (!slides.length) return;
+  let idx = 0;
+  slides.forEach(s=>s.classList.remove('active'));
+  function show(i){
+    slides.forEach(s=>s.classList.remove('active'));
+    slides[i].classList.add('active');
+  }
+  show(0);
+  setInterval(()=>{
+    idx = (idx + 1) % slides.length;
+    show(idx);
+  }, 6500);
+})();
+
+
+  // enlarge on links
+  document.querySelectorAll('a, button, .btn-accent').forEach(el=>{
+    el.addEventListener('mouseenter', ()=> { cur.style.transform = 'translate(-50%,-50%) scale(2)'; cur.style.background='rgba(255,255,255,0.9)' });
+    el.addEventListener('mouseleave', ()=> { cur.style.transform = 'translate(-50%,-50%) scale(1)'; cur.style.background='rgba(8,32,65,0.9)' });
+  });
+})();
+
+/* 10) Lazy-load images + reveal */
+(function(){
+  const imgs = document.querySelectorAll('img.lazy-img');
+  const ob = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const img = e.target;
+        if (img.dataset.src) { img.src = img.dataset.src; }
+        img.addEventListener('load', ()=> img.classList.add('loaded'));
+        ob.unobserve(img);
+      }
+    });
+  }, {threshold:0.2});
+  imgs.forEach(i=>ob.observe(i));
+})();
   </script>
     <!-- Your Code Ends Here -->
 </body>
