@@ -507,302 +507,209 @@
                     </div>
                 </div>
 
-                <!-- <div class="mt-12 text-center">
-      <a href="#cta" class="inline-block rounded-md px-6 py-3 btn-accent shadow font-semibold">Get a free audit</a>
-    </div> -->
-            </div>
-        </section>
-        <!-- <section id="features" class="scroll-offset bg-white py-20 sm:py-24">
-            <div class="mx-auto lg-fix-max-width px-6 lg:px-8">
-                <div class="mx-auto max-w-2xl text-center">
-                    <h2 class="text-base font-semibold text-accent">Why choose Somanshu</h2>
-                    <p class="mt-2 text-3xl md:text-4xl font-bold tracking-tight text-gray-900">Shopify development that
-                        actually converts</p>
-                    <p class="mt-4 text-gray-600">Design, speed and conversion optimization combined — for store owners
-                        who want measurable growth.</p>
+
+
+                <!-- Past Projects Grid -->
+                <section id="past-projects" class="scroll-offset bg-white py-20 sm:py-24">
+                    <div class="mx-auto lg-fix-max-width px-6 lg:px-8">
+                        <div class="mx-auto max-w-2xl text-center">
+                            <h2 class="text-base font-semibold text-accent">Past Projects</h2>
+                            <p class="mt-2 text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
+                                Real Shopify Stores We’ve Built
+                            </p>
+                            <p class="mt-4 text-gray-600">A showcase of custom stores and redesigns across
+                                industries.
+                            </p>
+                        </div>
+
+                        <!-- Responsive Image Grid -->
+                        <div id="projectGrid" class="mt-12 grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                            <!-- Image Block -->
+                            <figure
+                                class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
+                                <img src="images\1.png" alt="Project 1"
+                                    class="w-full aspect-video object-cover transition-transform duration-300" />
+                            </figure>
+
+                            <figure
+                                class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
+                                <img src="images\2.png" alt="Project 2"
+                                    class="w-full aspect-video object-cover transition-transform duration-300" />
+                            </figure>
+
+                            <figure
+                                class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
+                                <img src="images\3.png" alt="Project 3"
+                                    class="w-full aspect-video object-cover transition-transform duration-300" />
+                            </figure>
+                            <figure
+                                class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
+                                <img src="images\4.png" alt="Project 4"
+                                    class="w-full aspect-video object-cover transition-transform duration-300" />
+                            </figure>
+
+                            <figure
+                                class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
+                                <img src="images\5.png" alt="Project 5"
+                                    class="w-full aspect-video object-cover transition-transform duration-300" />
+                            </figure>
+
+                            <figure
+                                class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
+                                <img src="images\6.png" alt="Project 6"
+                                    class="w-full aspect-video object-cover transition-transform duration-300" />
+                            </figure>
+                            <figure
+                                class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
+                                <img src="images\7.png" alt="Project 7"
+                                    class="w-full aspect-video object-cover transition-transform duration-300" />
+                            </figure>
+
+                            <figure
+                                class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
+                                <img src="images\8.png" alt="Project 8"
+                                    class="w-full aspect-video object-cover transition-transform duration-300" />
+                            </figure>
+
+                            <figure
+                                class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
+                                <img src="images\9.png" alt="Project 9"
+                                    class="w-full aspect-video object-cover transition-transform duration-300" />
+                            </figure>
+                            <figure
+                                class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
+                                <img src="images\10.png" alt="Project 10"
+                                    class="w-full aspect-video object-cover transition-transform duration-300" />
+                            </figure>
+
+                            <figure
+                                class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
+                                <img src="images\11.png" alt="Project 11"
+                                    class="w-full aspect-video object-cover transition-transform duration-300" />
+                            </figure>
+
+                            <figure
+                                class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
+                                <img src="images\12.png" alt="Project 12"
+                                    class="w-full aspect-video object-cover transition-transform duration-300" />
+                            </figure>
+                            <!-- Add more figures as needed -->
+                        </div>
+                    </div>
+                </section>
+
+
+
+
+
+                <!-- Lightbox Modal -->
+                <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50">
+                    <button id="closeLightbox"
+                        class="absolute top-6 right-6 text-white text-3xl font-bold">&times;</button>
+                    <button id="prevLightbox" class="absolute left-6 text-white text-3xl">&#10094;</button>
+                    <img id="lightboxImg" src="" alt="Project preview"
+                        class="max-h-[80vh] max-w-[90vw] rounded-lg shadow-lg" />
+                    <button id="nextLightbox" class="absolute right-6 text-white text-3xl">&#10095;</button>
                 </div>
 
-                <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                    <div class="rounded-lg border p-6 hover:shadow-lg transition-shadow animate-fadeInUp">
-                        <h3 class="font-semibold text-lg">Performance</h3>
-                        <p class="mt-2 text-sm text-gray-600">Speed audits, theme lightening, responsive image
-                            optimizations.</p>
+                <script>
+                    // Lightbox functionality
+                    const lightbox = document.getElementById("lightbox");
+                    const lightboxImg = document.getElementById("lightboxImg");
+                    const closeBtn = document.getElementById("closeLightbox");
+                    const prevBtn = document.getElementById("prevLightbox");
+                    const nextBtn = document.getElementById("nextLightbox");
+                    const figures = document.querySelectorAll("#projectGrid figure img");
+                    let currentIndex = 0;
+
+                    function openLightbox(index) {
+                        currentIndex = index;
+                        const img = figures[index];
+                        lightboxImg.src = img.dataset.full || img.src;
+                        lightbox.classList.remove("hidden");
+                        lightbox.classList.add("flex");
+                    }
+
+                    function closeLightbox() {
+                        lightbox.classList.add("hidden");
+                        lightbox.classList.remove("flex");
+                    }
+
+                    function showPrev() {
+                        currentIndex = (currentIndex - 1 + figures.length) % figures.length;
+                        openLightbox(currentIndex);
+                    }
+
+                    function showNext() {
+                        currentIndex = (currentIndex + 1) % figures.length;
+                        openLightbox(currentIndex);
+                    }
+
+                    figures.forEach((img, i) => {
+                        img.addEventListener("click", () => openLightbox(i));
+                    });
+                    closeBtn.addEventListener("click", closeLightbox);
+                    prevBtn.addEventListener("click", showPrev);
+                    nextBtn.addEventListener("click", showNext);
+
+                    // Close on background click
+                    lightbox.addEventListener("click", (e) => {
+                        if (e.target === lightbox) closeLightbox();
+                    });
+
+                    // Keyboard navigation
+                    document.addEventListener("keydown", (e) => {
+                        if (lightbox.classList.contains("hidden")) return;
+                        if (e.key === "Escape") closeLightbox();
+                        if (e.key === "ArrowLeft") showPrev();
+                        if (e.key === "ArrowRight") showNext();
+                    });
+                </script>
+
+
+                <!-- Process -->
+                <section id="process" class="scroll-offset bg-white py-20 sm:py-24">
+                    <div class="mx-auto lg-fix-max-width px-6 lg:px-8">
+                        <div class="mx-auto max-w-2xl text-center">
+                            <h2 class="text-base font-semibold text-accent">Process</h2>
+                            <p class="mt-2 text-3xl md:text-4xl font-bold tracking-tight text-gray-900">How we'll work
+                                together
+                            </p>
+                            <p class="mt-3 text-gray-600">A predictable 4-step process so every launch is smooth and
+                                measurable.
+                            </p>
+                        </div>
+
+                        <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                            <div
+                                class="p-6 bg-gray-50 rounded-lg shadow animate-fadeInUp hover:shadow-lg transition-shadow">
+                                <h4 class="font-semibold  text-center">Audit</h4>
+                                <p class="mt-2 text-sm text-gray-600 text-center">A Detailed assessment of the
+                                    requirements.</p>
+                            </div>
+                            <div
+                                class="p-6 bg-gray-50 rounded-lg shadow animate-fadeInUp hover:shadow-lg transition-shadow">
+                                <h4 class="font-semibold text-center">Strategy</h4>
+                                <p class="mt-2 text-sm text-gray-600 text-center">A clear roadmap with revenue-focused
+                                    recommendations.</p>
+                            </div>
+                            <div
+                                class="p-6 bg-gray-50 rounded-lg shadow animate-fadeInUp hover:shadow-lg transition-shadow">
+                                <h4 class="font-semibold text-center">Build</h4>
+                                <p class="mt-2 text-sm text-gray-600 text-center">Fast, test-driven development with
+                                    staging
+                                    preview.</p>
+                            </div>
+                            <div
+                                class="p-6 bg-gray-50 rounded-lg shadow animate-fadeInUp hover:shadow-lg transition-shadow">
+                                <h4 class="font-semibold text-center">Launch</h4>
+                                <p class="mt-2 text-sm text-gray-600 text-center">Launch and 30 days of support to
+                                    stabilize
+                                    results.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="rounded-lg border p-6 hover:shadow-lg transition-shadow animate-fadeInUp">
-                        <h3 class="font-semibold text-lg">Design that sells</h3>
-                        <p class="mt-2 text-sm text-gray-600">Product pages and UX that increase conversions and trust.
-                        </p>
-                    </div>
-                    <div class="rounded-lg border p-6 hover:shadow-lg transition-shadow animate-fadeInUp">
-                        <h3 class="font-semibold text-lg">Checkout optimization</h3>
-                        <p class="mt-2 text-sm text-gray-600">Lower friction, faster checkout, fewer abandoned carts.
-                        </p>
-                    </div>
-                    <div class="rounded-lg border p-6 hover:shadow-lg transition-shadow animate-fadeInUp">
-                        <h3 class="font-semibold text-lg">Growth-focused</h3>
-                        <p class="mt-2 text-sm text-gray-600">Upsells, bundles and post-purchase flows to raise AOV.</p>
-                    </div>
-                </div>
-            </div>
-        </section> -->
-        <!-- Past Projects Grid -->
-        <section id="past-projects" class="scroll-offset bg-white py-20 sm:py-24">
-            <div class="mx-auto lg-fix-max-width px-6 lg:px-8">
-                <div class="mx-auto max-w-2xl text-center">
-                    <h2 class="text-base font-semibold text-accent">Past Projects</h2>
-                    <p class="mt-2 text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
-                        Real Shopify Stores We’ve Built
-                    </p>
-                    <p class="mt-4 text-gray-600">A showcase of custom stores and redesigns across industries.</p>
-                </div>
-
-                <!-- Responsive Image Grid -->
-                <div id="projectGrid" class="mt-12 grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                    <!-- Image Block -->
-                    <figure
-                        class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition duration-300 cursor-pointer">
-                        <img src="images\1.png" data-full="images\1.png\1200x800/082041/ffffff&text=Project+1"
-                            alt="Project 1" class="w-full h-48 object-cover" />
-                    </figure>
-
-                    <figure
-                        class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition duration-300 cursor-pointer">
-                        <img src="https://dummyimage.com/600x400/082041/ffffff&text=Project+2"
-                            data-full="https://dummyimage.com/1200x800/082041/ffffff&text=Project+2" alt="Project 2"
-                            class="w-full h-48 object-cover" />
-                    </figure>
-
-                    <figure
-                        class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition duration-300 cursor-pointer">
-                        <img src="https://dummyimage.com/600x400/082041/ffffff&text=Project+3"
-                            data-full="https://dummyimage.com/1200x800/082041/ffffff&text=Project+3" alt="Project 3"
-                            class="w-full h-48 object-cover" />
-                    </figure>
-                    <figure
-                        class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition duration-300 cursor-pointer">
-                        <img src="https://dummyimage.com/600x400/082041/ffffff&text=Project+4"
-                            data-full="https://dummyimage.com/1200x800/082041/ffffff&text=Project+4" alt="Project 4"
-                            class="w-full h-48 object-cover" />
-                    </figure>
-
-                    <figure
-                        class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition duration-300 cursor-pointer">
-                        <img src="https://dummyimage.com/600x400/082041/ffffff&text=Project+5"
-                            data-full="https://dummyimage.com/1200x800/082041/ffffff&text=Project+5" alt="Project 5"
-                            class="w-full h-48 object-cover" />
-                    </figure>
-
-                    <figure
-                        class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition duration-300 cursor-pointer">
-                        <img src="https://dummyimage.com/600x400/082041/ffffff&text=Project+6"
-                            data-full="https://dummyimage.com/1200x800/082041/ffffff&text=Project+6" alt="Project 6"
-                            class="w-full h-48 object-cover" />
-                    </figure>
-
-                    <figure
-                        class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition duration-300 cursor-pointer">
-                        <img src="https://dummyimage.com/600x400/082041/ffffff&text=Project+7"
-                            data-full="https://dummyimage.com/1200x800/082041/ffffff&text=Project+7" alt="Project 7"
-                            class="w-full h-48 object-cover" />
-                    </figure>
-                    <figure
-                        class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition duration-300 cursor-pointer">
-                        <img src="https://dummyimage.com/600x400/082041/ffffff&text=Project+8"
-                            data-full="https://dummyimage.com/1200x800/082041/ffffff&text=Project+8" alt="Project 8"
-                            class="w-full h-48 object-cover" />
-                    </figure>
-                    <figure
-                        class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition duration-300 cursor-pointer">
-                        <img src="https://dummyimage.com/600x400/082041/ffffff&text=Project+9"
-                            data-full="https://dummyimage.com/1200x800/082041/ffffff&text=Project+9" alt="Project 9"
-                            class="w-full h-48 object-cover" />
-                    </figure>
-                    <figure
-                        class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition duration-300 cursor-pointer">
-                        <img src="https://dummyimage.com/600x400/082041/ffffff&text=Project+10"
-                            data-full="https://dummyimage.com/1200x800/082041/ffffff&text=Project+10" alt="Project 10"
-                            class="w-full h-48 object-cover" />
-                    </figure>
-                    <figure
-                        class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition duration-300 cursor-pointer">
-                        <img src="https://dummyimage.com/600x400/082041/ffffff&text=Project+11"
-                            data-full="https://dummyimage.com/1200x800/082041/ffffff&text=Project+11" alt="Project 11"
-                            class="w-full h-48 object-cover" />
-                    </figure>
-                    <figure
-                        class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg hover:scale-105 transform transition duration-300 cursor-pointer">
-                        <img src="https://dummyimage.com/600x400/082041/ffffff&text=Project+12"
-                            data-full="https://dummyimage.com/1200x800/082041/ffffff&text=Project+12" alt="Project 12"
-                            class="w-full h-48 object-cover" />
-                    </figure>
-
-                    <!-- Add more figures as needed (up to 12) -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Lightbox Modal -->
-        <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50">
-            <button id="closeLightbox" class="absolute top-6 right-6 text-white text-3xl font-bold">&times;</button>
-            <button id="prevLightbox" class="absolute left-6 text-white text-3xl">&#10094;</button>
-            <img id="lightboxImg" src="" alt="Project preview" class="max-h-[80vh] max-w-[90vw] rounded-lg shadow-lg" />
-            <button id="nextLightbox" class="absolute right-6 text-white text-3xl">&#10095;</button>
-        </div>
-
-        <script>
-            // Lightbox functionality
-            const lightbox = document.getElementById("lightbox");
-            const lightboxImg = document.getElementById("lightboxImg");
-            const closeBtn = document.getElementById("closeLightbox");
-            const prevBtn = document.getElementById("prevLightbox");
-            const nextBtn = document.getElementById("nextLightbox");
-            const figures = document.querySelectorAll("#projectGrid figure img");
-            let currentIndex = 0;
-
-            function openLightbox(index) {
-                currentIndex = index;
-                const img = figures[index];
-                lightboxImg.src = img.dataset.full || img.src;
-                lightbox.classList.remove("hidden");
-                lightbox.classList.add("flex");
-            }
-
-            function closeLightbox() {
-                lightbox.classList.add("hidden");
-                lightbox.classList.remove("flex");
-            }
-
-            function showPrev() {
-                currentIndex = (currentIndex - 1 + figures.length) % figures.length;
-                openLightbox(currentIndex);
-            }
-
-            function showNext() {
-                currentIndex = (currentIndex + 1) % figures.length;
-                openLightbox(currentIndex);
-            }
-
-            figures.forEach((img, i) => {
-                img.addEventListener("click", () => openLightbox(i));
-            });
-            closeBtn.addEventListener("click", closeLightbox);
-            prevBtn.addEventListener("click", showPrev);
-            nextBtn.addEventListener("click", showNext);
-
-            // Close on background click
-            lightbox.addEventListener("click", (e) => {
-                if (e.target === lightbox) closeLightbox();
-            });
-
-            // Keyboard navigation
-            document.addEventListener("keydown", (e) => {
-                if (lightbox.classList.contains("hidden")) return;
-                if (e.key === "Escape") closeLightbox();
-                if (e.key === "ArrowLeft") showPrev();
-                if (e.key === "ArrowRight") showNext();
-            });
-        </script>
-
-        <!-- Portfolio (centered carousel with cards restored) -->
-        <section id="portfolio" class="scroll-offset bg-gray-50 py-20 sm:py-24">
-            <div class="mx-auto lg-fix-max-width px-6 lg:px-8">
-                <div class="mx-auto max-w-2xl text-center">
-                    <h2 class="text-base font-semibold text-accent">Portfolio</h2>
-                    <p class="mt-2 text-3xl md:text-4xl font-bold tracking-tight text-gray-900">Selected Shopify
-                        projects</p>
-                    <p class="mt-4 text-gray-600">Real stores. Real results — screenshots and short outcomes below.</p>
-                </div>
-
-                <div class="mt-12 flex justify-center">
-                    <div class="w-full max-w-4xl carousel flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory px-2">
-                        <!-- card 1 -->
-                        <figure
-                            class="hover-tilt snap-center flex-none w-80 rounded-lg bg-white shadow-lg overflow-hidden transition-transform">
-
-                            <img src="https://dummyimage.com/720x480/082041/ffffff&text=Skincare+Brand"
-                                alt="Skincare Brand" class="w-full h-44 object-cover" />
-                            <figcaption class="p-4">
-                                <h3 class="font-semibold text-gray-900">Skincare Brand</h3>
-                                <p class="mt-2 text-sm text-gray-600">3x conversion uplift after landing page redesign &
-                                    A/B testing.</p>
-                                <p class="mt-3 text-xs text-gray-400">Dawn theme • Custom sections • Upsell flows</p>
-                            </figcaption>
-                        </figure>
-
-                        <!-- card 2 -->
-                        <figure
-                            class="snap-center flex-none w-80 rounded-lg bg-white shadow-lg overflow-hidden hover:scale-105 transition-transform">
-                            <img src="https://dummyimage.com/720x480/082041/ffffff&text=Apparel+Store"
-                                alt="Apparel Store" class="w-full h-44 object-cover" />
-                            <figcaption class="p-4">
-                                <h3 class="font-semibold text-gray-900">Apparel Store</h3>
-                                <p class="mt-2 text-sm text-gray-600">Mobile-first redesign + checkout fixes — cart
-                                    abandonment down 18%.</p>
-                                <p class="mt-3 text-xs text-gray-400">Custom theme • Lazy-loading images</p>
-                            </figcaption>
-                        </figure>
-
-                        <!-- card 3 -->
-                        <figure
-                            class="snap-center flex-none w-80 rounded-lg bg-white shadow-lg overflow-hidden hover:scale-105 transition-transform">
-                            <img src="https://dummyimage.com/720x480/082041/ffffff&text=Fitness+Products"
-                                alt="Fitness Products" class="w-full h-44 object-cover" />
-                            <figcaption class="p-4">
-                                <h3 class="font-semibold text-gray-900">Fitness Products</h3>
-                                <p class="mt-2 text-sm text-gray-600">Upsell funnels + PDP improvements increased AOV by
-                                    22%.</p>
-                                <p class="mt-3 text-xs text-gray-400">Shopify Scripts • Bundles</p>
-                            </figcaption>
-                        </figure>
-
-                        <!-- card 4 -->
-                        <figure
-                            class="snap-center flex-none w-80 rounded-lg bg-white shadow-lg overflow-hidden hover:scale-105 transition-transform">
-                            <img src="https://dummyimage.com/720x480/082041/ffffff&text=D2C+Migration"
-                                alt="D2C Migration" class="w-full h-44 object-cover" />
-                            <figcaption class="p-4">
-                                <h3 class="font-semibold text-gray-900">Direct-to-Consumer</h3>
-                                <p class="mt-2 text-sm text-gray-600">Site migration + SEO cleanup improved organic
-                                    sessions & transactions.</p>
-                                <p class="mt-3 text-xs text-gray-400">Liquid customizations • SEO fixes</p>
-                            </figcaption>
-                        </figure>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Process -->
-        <section id="process" class="scroll-offset bg-white py-20 sm:py-24">
-            <div class="mx-auto lg-fix-max-width px-6 lg:px-8">
-                <div class="mx-auto max-w-2xl text-center">
-                    <h2 class="text-base font-semibold text-accent">Process</h2>
-                    <p class="mt-2 text-3xl md:text-4xl font-bold tracking-tight text-gray-900">How we'll work together
-                    </p>
-                    <p class="mt-3 text-gray-600">A predictable 4-step process so every launch is smooth and measurable.
-                    </p>
-                </div>
-
-                <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                    <div class="p-6 bg-gray-50 rounded-lg shadow animate-fadeInUp hover:shadow-lg transition-shadow">
-                        <h4 class="font-semibold">Audit</h4>
-                        <p class="mt-2 text-sm text-gray-600">15-point assessment and prioritized fixes.</p>
-                    </div>
-                    <div class="p-6 bg-gray-50 rounded-lg shadow animate-fadeInUp hover:shadow-lg transition-shadow">
-                        <h4 class="font-semibold">Strategy</h4>
-                        <p class="mt-2 text-sm text-gray-600">A clear roadmap with revenue-focused recommendations.</p>
-                    </div>
-                    <div class="p-6 bg-gray-50 rounded-lg shadow animate-fadeInUp hover:shadow-lg transition-shadow">
-                        <h4 class="font-semibold">Build</h4>
-                        <p class="mt-2 text-sm text-gray-600">Fast, test-driven development with staging preview.</p>
-                    </div>
-                    <div class="p-6 bg-gray-50 rounded-lg shadow animate-fadeInUp hover:shadow-lg transition-shadow">
-                        <h4 class="font-semibold">Launch</h4>
-                        <p class="mt-2 text-sm text-gray-600">Launch and 30 days of support to stabilize results.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+                </section>
 
 
     </main>
