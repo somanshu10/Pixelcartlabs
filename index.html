@@ -409,6 +409,23 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Lightbox transition animations */
+.lightbox-img {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  opacity: 1;
+}
+
+.lightbox-img.hide-left {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+
+.lightbox-img.hide-right {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
     </style>
     
 </head>
@@ -431,8 +448,7 @@
             </div>
 
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-                <a href="#cta" class="inline-block rounded-md px-4 py-2 text-sm font-semibold btn-accent shadow">Book
-                    Audit</a>
+                <a href="#contact" class="inline-block rounded-md px-4 py-2 text-sm font-semibold btn-accent shadow">Contact</a>
             </div>
         </nav>
     </header>
@@ -447,11 +463,11 @@
                     user-friendly, and built to convert. Stop losing sales to slow sites
                     and clunky checkouts — start growing today..</p>
                 <div class="mt-10 flex items-center justify-center gap-4">
-                    <a href="#cta"
+                    <a href="#contact"
                         class="rounded-md px-6 py-3 text-base font-semibold btn-accent shadow transform transition-transform hover:-translate-y-0.5">Book
                         a
                         Free Consultation</a>
-                    <a href="#features" class="text-base font-medium text-gray-700 hover:underline">See features →</a>
+                    <a href="#what-we-provide" class="text-base font-medium text-gray-700 hover:underline">See features →</a>
                 </div>
             </div>
         </section>
@@ -526,6 +542,8 @@
                         <!-- Responsive Image Grid -->
                         <div id="projectGrid" class="mt-12 grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                             <!-- Image Block -->
+     
+
                             <figure
                                 class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
                                 <img src="images\1.png" alt="Project 1"
@@ -604,68 +622,120 @@
 
 
                 <!-- Lightbox Modal -->
-                <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50">
-                    <button id="closeLightbox"
-                        class="absolute top-6 right-6 text-white text-3xl font-bold">&times;</button>
-                    <button id="prevLightbox" class="absolute left-6 text-white text-3xl">&#10094;</button>
-                    <img id="lightboxImg" src="" alt="Project preview"
-                        class="max-h-[80vh] max-w-[90vw] rounded-lg shadow-lg" />
-                    <button id="nextLightbox" class="absolute right-6 text-white text-3xl">&#10095;</button>
-                </div>
+                <!-- Lightbox Modal -->
+<div id="lightbox" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50">
+  <button id="closeLightbox" class="absolute top-6 right-6 text-white text-3xl font-bold">&times;</button>
+  <button id="prevLightbox" class="absolute left-6 text-white text-3xl">&#10094;</button>
+  
+  <div class="text-center">
+    <img id="lightboxImg" src="" alt="Project preview"
+         class="lightbox-img max-h-[70vh] max-w-[90vw] rounded-lg shadow-lg mx-auto" />
+    <p id="lightboxCaption" class="mt-4 text-white text-lg"></p>
+    <a id="lightboxLink" href="#" target="_blank"
+       class="mt-2 inline-block text-sm text-accent bg-white px-4 py-2 rounded shadow hover:opacity-90">View Project</a>
+  </div>
 
-                <script>
-                    // Lightbox functionality
-                    const lightbox = document.getElementById("lightbox");
-                    const lightboxImg = document.getElementById("lightboxImg");
-                    const closeBtn = document.getElementById("closeLightbox");
-                    const prevBtn = document.getElementById("prevLightbox");
-                    const nextBtn = document.getElementById("nextLightbox");
-                    const figures = document.querySelectorAll("#projectGrid figure img");
-                    let currentIndex = 0;
+  <button id="nextLightbox" class="absolute right-6 text-white text-3xl">&#10095;</button>
+</div>
 
-                    function openLightbox(index) {
-                        currentIndex = index;
-                        const img = figures[index];
-                        lightboxImg.src = img.dataset.full || img.src;
-                        lightbox.classList.remove("hidden");
-                        lightbox.classList.add("flex");
-                    }
 
-                    function closeLightbox() {
-                        lightbox.classList.add("hidden");
-                        lightbox.classList.remove("flex");
-                    }
+        <script>
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightboxImg");
+  const lightboxCaption = document.getElementById("lightboxCaption");
+  const lightboxLink = document.getElementById("lightboxLink");
+  const closeBtn = document.getElementById("closeLightbox");
+  const prevBtn = document.getElementById("prevLightbox");
+  const nextBtn = document.getElementById("nextLightbox");
+  const figures = document.querySelectorAll("#projectGrid figure img");
+  let currentIndex = 0;
 
-                    function showPrev() {
-                        currentIndex = (currentIndex - 1 + figures.length) % figures.length;
-                        openLightbox(currentIndex);
-                    }
+  function showImage(index, direction = "right") {
+    const img = figures[index];
 
-                    function showNext() {
-                        currentIndex = (currentIndex + 1) % figures.length;
-                        openLightbox(currentIndex);
-                    }
+    // Animate out
+    lightboxImg.classList.add(direction === "right" ? "hide-right" : "hide-left");
 
-                    figures.forEach((img, i) => {
-                        img.addEventListener("click", () => openLightbox(i));
-                    });
-                    closeBtn.addEventListener("click", closeLightbox);
-                    prevBtn.addEventListener("click", showPrev);
-                    nextBtn.addEventListener("click", showNext);
+    setTimeout(() => {
+      // Change content
+      lightboxImg.src = img.dataset.full || img.src;
+      lightboxCaption.textContent = img.dataset.caption || img.alt;
+      if (img.dataset.link) {
+        lightboxLink.href = img.dataset.link;
+        lightboxLink.style.display = "inline-block";
+      } else {
+        lightboxLink.style.display = "none";
+      }
 
-                    // Close on background click
-                    lightbox.addEventListener("click", (e) => {
-                        if (e.target === lightbox) closeLightbox();
-                    });
+      // Animate in
+      lightboxImg.classList.remove("hide-left", "hide-right");
+    }, 300);
+  }
 
-                    // Keyboard navigation
-                    document.addEventListener("keydown", (e) => {
-                        if (lightbox.classList.contains("hidden")) return;
-                        if (e.key === "Escape") closeLightbox();
-                        if (e.key === "ArrowLeft") showPrev();
-                        if (e.key === "ArrowRight") showNext();
-                    });
-                </script>
+  function openLightbox(index) {
+    currentIndex = index;
+    showImage(currentIndex);
+    lightbox.classList.remove("hidden");
+    lightbox.classList.add("flex");
+    document.body.style.overflow = "hidden"; // disable scroll
+  }
+
+  function closeLightbox() {
+    lightbox.classList.add("hidden");
+    lightbox.classList.remove("flex");
+    document.body.style.overflow = ""; // enable scroll
+  }
+
+  function showPrev() {
+    currentIndex = (currentIndex - 1 + figures.length) % figures.length;
+    showImage(currentIndex, "left");
+  }
+
+  function showNext() {
+    currentIndex = (currentIndex + 1) % figures.length;
+    showImage(currentIndex, "right");
+  }
+
+  figures.forEach((img, i) => {
+    img.addEventListener("click", () => openLightbox(i));
+  });
+  closeBtn.addEventListener("click", closeLightbox);
+  prevBtn.addEventListener("click", showPrev);
+  nextBtn.addEventListener("click", showNext);
+
+  // Close on background click
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  // Keyboard navigation
+  document.addEventListener("keydown", (e) => {
+    if (lightbox.classList.contains("hidden")) return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") showPrev();
+    if (e.key === "ArrowRight") showNext();
+  });
+
+  // --- Swipe support for mobile ---
+  let startX = 0;
+  lightbox.addEventListener("touchstart", (e) => {
+    startX = e.changedTouches[0].screenX;
+  });
+
+  lightbox.addEventListener("touchend", (e) => {
+    const endX = e.changedTouches[0].screenX;
+    const diff = startX - endX;
+
+    if (Math.abs(diff) > 50) { // min swipe distance
+      if (diff > 0) {
+        showNext(); // swipe left → next
+      } else {
+        showPrev(); // swipe right → prev
+      }
+    }
+  });
+</script>
+
 
 
                 <!-- Process -->
@@ -721,20 +791,7 @@
     <button id="backToTop" aria-label="Back to top"
         class="back-to-top fixed right-6 bottom-8 hidden rounded-full bg-accent p-3 shadow-lg text-white">↑</button>
 
-    <script>
-        // Footer year
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // Back to top
-        const backBtn = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 600) backBtn.classList.remove('hidden'); else backBtn.classList.add('hidden');
-        });
-        backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-        // Keyboard focus for carousel items
-        document.querySelectorAll('.carousel > *').forEach((el) => { el.setAttribute('tabindex', '0'); });
-    </script>
+    
     <!-- Your Code Starts Here -->
     <header class="absolute inset-x-0 top-0 z-50">
         <nav aria-label="Global" class="flex items-center justify-between p-6 lg:px-8">
@@ -807,7 +864,7 @@
 
     <div class="bg-gray-900 py-24 sm:py-32">
         <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-            <!-- <h2 class="text-center text-base/7 font-semibold text-indigo-400">Deploy faster</h2> -->
+            
             <p
                 class="mx-auto mt-2 max-w-lg text-center text-4xl font-semibold tracking-tight text-balance text-white sm:text-5xl">
                 Everything you need to elevate your Business to the next level</p>
@@ -923,7 +980,7 @@
                         <li>Conversion flow review</li>
                         <li>App & theme recommendations</li>
                     </ul>
-                    <div class="mt-6"><a href="#cta" class="inline-block rounded-md px-4 py-2 btn-accent">Get
+                    <div class="mt-6"><a href="#contact" class="inline-block rounded-md px-4 py-2 btn-accent">Get
                             Audit</a>
                         </div>
                 </div>
@@ -936,7 +993,7 @@
                         <li>Conversion-centered PDPs</li>
                         <li>30 days support</li>
                     </ul>
-                    <div class="mt-6"><a href="#cta" class="inline-block rounded-md px-4 py-2 btn-accent">Book
+                    <div class="mt-6"><a href="#contact" class="inline-block rounded-md px-4 py-2 btn-accent">Book
                             Rebuild</a></div>
                 </div>
             </div>
@@ -1020,18 +1077,69 @@
     </section>
 
     <!-- Final CTA -->
-    <section id="cta" class="scroll-offset bg-accent px-6 py-16 sm:py-20 text-center">
+    <section id="ctab" class="scroll-offset bg-accent px-6 py-16 sm:py-20 text-center">
         <div class="mx-auto max-w-3xl">
             <h2 class="text-2xl md:text-3xl font-bold text-white">Stop losing sales — claim a free 15-minute audit
             </h2>
             <p class="mt-3 text-white/90">Limited slots to keep quality high. You’ll get a straight action plan you
                 can implement.</p>
-            <div class="mt-6"><a href="mailto:hello@yourdomain.com"
-                    class="inline-block rounded-md px-6 py-3 bg-white text-accent font-semibold">Email to book</a>
+            <!-- <div class="mt-6"><a href="mailto:hello@yourdomain.com"
+                    class="inline-block rounded-md px-6 py-3 bg-white text-accent font-semibold">Email to book</a> -->
             </div>
         </div>
     </section>
-    <!-- Footer -->
+
+
+<!-- Contact Form Section -->
+<section id="contact" class="scroll-offset bg-gray-50 py-16 sm:py-20">
+  <div class="mx-auto max-w-3xl px-6 lg:px-8 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Get in Touch</h2>
+    <p class="mt-3 text-gray-600">Fill out the form and we’ll get back to you soon.</p>
+
+    <form id="contact-form" class="mt-8 grid gap-6 text-left">
+      <!-- Name -->
+      <div>
+        <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+        <input type="text" id="name" name="user_name" required
+               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-accent focus:ring-accent sm:text-sm"/>
+      </div>
+<!-- Mobile Number -->
+<!-- Mobile Number (Optional) -->
+<div>
+  <label for="phone" class="block text-sm font-medium text-gray-700">Mobile Number <span class="text-gray-400">(optional)</span></label>
+  <input type="tel" id="phone" name="user_phone"
+         class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-accent focus:ring-accent sm:text-sm"
+         placeholder=""/>
+</div>
+
+
+      <!-- Email -->
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+        <input type="email" id="email" name="user_email" required
+               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-accent focus:ring-accent sm:text-sm"/>
+      </div>
+
+      <!-- Message -->
+      <div>
+        <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+        <textarea id="message" name="message" rows="5" required
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-accent focus:ring-accent sm:text-sm"></textarea>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit"
+              class="btn-accent rounded-md px-6 py-3 font-semibold shadow hover:-translate-y-0.5 transition">
+        Send Message
+      </button>
+    </form>
+
+    <p id="form-status" class="mt-4 text-sm"></p>
+  </div>
+</section>
+
+
+      <!-- Footer -->
     <footer class="bg-gray-900 text-gray-300 py-12">
         <div class="mx-auto lg-fix-max-width px-6 lg:px-8">
             <div class="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
@@ -1066,6 +1174,20 @@
         </div>
     </footer>
     <script>
+       
+        // Footer year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Back to top
+        const backBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 600) backBtn.classList.remove('hidden'); else backBtn.classList.add('hidden');
+        });
+        backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // Keyboard focus for carousel items
+        document.querySelectorAll('.carousel > *').forEach((el) => { el.setAttribute('tabindex', '0'); });
+    
         // Animate sections on scroll
         const observer = new IntersectionObserver(
             (entries) => {
@@ -1314,6 +1436,30 @@
 
 
     </script>
+    <!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  // Init EmailJS
+  (function(){
+    emailjs.init("ivWAEQ5FjkNAD67sF"); // Replace with your EmailJS Public Key
+  })();
+
+  // Form submit handler
+  document.getElementById("contact-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    emailjs.sendForm("service_m5tq96g", "template_wj4629n", this)
+      .then(() => {
+        document.getElementById("form-status").textContent = "✅ Message sent successfully!";
+        document.getElementById("form-status").className = "mt-4 text-green-600 text-sm";
+        this.reset();
+      }, (err) => {
+        document.getElementById("form-status").textContent = "❌ Failed to send. Try again.";
+        document.getElementById("form-status").className = "mt-4 text-red-600 text-sm";
+      });
+  });
+</script>
+
     <!-- Your Code Ends Here -->
 </body>
 
