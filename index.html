@@ -454,24 +454,41 @@
     </header>
 
     <main class="pt-28">
-        <!-- Hero -->
-        <section id="features" class="relative px-6 lg:px-8 text-center">
-            <div class="mx-auto max-w-2xl py-24 sm:py-32 animate-fadeIn">
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900">Turn Your
-                    Shopify Store Into a 24/7 Sales Machine</h1>
-                <p class="mt-6 text-lg sm:text-xl text-gray-600">We design and build Shopify stores that are fast,
-                    user-friendly, and built to convert. Stop losing sales to slow sites
-                    and clunky checkouts — start growing today..</p>
-                <div class="mt-10 flex items-center justify-center gap-4">
-                    <a href="#contact"
-                        class="rounded-md px-6 py-3 text-base font-semibold btn-accent shadow transform transition-transform hover:-translate-y-0.5">Book
-                        a
-                        Free Consultation</a>
-                    <a href="#what-we-provide" class="text-base font-medium text-gray-700 hover:underline">See features →</a>
-                </div>
-            </div>
-        </section>
+    <!-- Hero Section Option 3 (Fixed) -->
+<section id="features" class="relative min-h-[100vh] flex items-center justify-center text-white">
+  <div id="hero-bg" class="absolute inset-0"></div>
+  <div class="relative z-10 text-center max-w-4xl px-6">
+    <h1 class="text-5xl md:text-6xl font-extrabold leading-tight">
+  Turn Your Shopify Store Into a <span class="">24/7 Sales Machine</span>
+</h1>
+<p class="mt-6 text-xl text-gray-200 max-w-2xl mx-auto">
+    From startups to global brands — we craft Shopify experiences 
+  that are mobile-first, lightning-fast, and built to dominate your niche.
+</p>
+    <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+      <a href="#contact" class="btn-accent px-10 py-4 text-lg rounded-xl shadow-lg">Get Details</a>
+      <a href="#pastprojects" class="text-lg font-medium text-gray-300 hover:text-white hover:underline">
+        See Portfolio →
+      </a>
+    </div>
+  </div>
+</section>
 
+<!-- Vanta.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.net.min.js"></script>
+<script>
+VANTA.NET({
+  el: "#hero-bg",
+  mouseControls: true,
+  touchControls: true,
+  color: 0x0b66ff,
+  backgroundColor: 0x07162a,
+  points: 12.00,
+  maxDistance: 22.00,
+  spacing: 18.00
+})
+</script>
         <!-- Features -->
         <!-- What We Provide — Updated Tailwind HTML snippet -->
         <section id="what-we-provide" class="scroll-offset bg-gray-50 py-20 sm:py-24">
