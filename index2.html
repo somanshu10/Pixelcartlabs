@@ -425,165 +425,53 @@
   opacity: 0;
   transform: translateX(40px);
 }
-/* Blur effect when lightbox is open */
-.header-blur {
-  filter: blur(6px);
-  transition: filter 0.3s ease;
-}
-#lightbox {
-  z-index: 99999 !important;
-}
-
 
     </style>
     
 </head>
 
-
 <body class="bg-white text-gray-800">
     <!-- Sticky header -->
-<header class="fixed inset-x-0 top-0 z-50 bg-white shadow-sm">
-  <nav class="flex items-center justify-between px-4 py-1 lg:px-6 lg:py-2">
-    
-    <!-- LOGO (Big but compact header) -->
-   <!-- LOGO (Centered on Mobile, Left on Desktop) -->
-<div class="flex items-center justify-center lg:justify-start flex-1">
-  <a href="/" class="flex items-center">
-    <img src="images/Pixel.png" alt="PixelCartLabs Logo"
-         class="h-32 w-auto sm:h-32 md:h-32 lg:h-32 xl:h-32" />
-   
-  </a>
-</div>
-
-
-    <!-- Desktop Navigation -->
-    <div class="hidden lg:flex lg:gap-x-6 lg:items-center">
-      <a href="#features" class="text-sm font-medium text-gray-700 hover:text-accent">Features</a>
-      <a href="#pastprojects" class="text-sm font-medium text-gray-700 hover:text-accent">Portfolio</a>
-      <a href="#process" class="text-sm font-medium text-gray-700 hover:text-accent">Process</a>
-      <a href="#pricing" class="text-sm font-medium text-gray-700 hover:text-accent">Pricing</a>
-      <a href="#faq" class="text-sm font-medium text-gray-700 hover:text-accent">FAQ</a>
-      <a href="#testimonials" class="text-sm font-medium text-gray-700 hover:text-accent">Testimonials</a>
-    </div>
-
-    <!-- Contact Button (Desktop Only) -->
-    <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-      <a href="#contact" class="inline-block rounded-md px-4 py-2 text-sm font-semibold btn-accent shadow">
-        Contact
-      </a>
-    </div>
-
-    <!-- Mobile Menu Button -->
-    <div class="lg:hidden">
-      <button type="button" command="show-modal" commandfor="mobile-menu"
-        class="inline-flex items-center justify-center rounded-md p-2 text-gray-700">
-        <span class="sr-only">Open main menu</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-7 h-7">
-          <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </button>
-    </div>
-  </nav>
-
-<nav aria-label="Global" class="flex items-center justify-between p-6 lg:px-8">
-            <div class="flex lg:flex-1">
+    <header class="fixed inset-x-0 top-0 z-50 bg-white shadow-sm">
+        <nav class="flex items-center justify-between p-4 lg:p-6 lg:px-8">
+            <div class="flex items-center gap-3">
 
             </div>
-            
+
+            <div class="hidden lg:flex lg:gap-x-6 lg:items-center">
+                <a href="#features" class="text-sm font-medium text-gray-700 hover:text-accent">Features</a>
+                <a href="#pastprojects" class="text-sm font-medium text-gray-700 hover:text-accent">Portfolio</a>
+                <a href="#process" class="text-sm font-medium text-gray-700 hover:text-accent">Process</a>
+                <a href="#pricing" class="text-sm font-medium text-gray-700 hover:text-accent">Pricing</a>
+                <a href="#faq" class="text-sm font-medium text-gray-700 hover:text-accent">FAQ</a>
+                <a href="#testimonials" class="text-sm font-medium text-gray-700 hover:text-accent">Testimonials</a>
+            </div>
+
+            <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+                <a href="#contact" class="inline-block rounded-md px-4 py-2 text-sm font-semibold btn-accent shadow">Contact</a>
+            </div>
         </nav>
-
-        <!-- Mobile Menu -->
-        <el-dialog>
-            <dialog id="mobile-menu" class="backdrop:bg-transparent lg:hidden">
-                <div tabindex="0" class="fixed inset-0 focus:outline-none">
-                    <el-dialog-panel
-                        class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-                        <div class="flex items-center justify-between">
-                            <!-- <a href="#" class="-m-1.5 p-1.5">
-                                <span class="sr-only">Your Company</span>
-                                <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-                                    alt="Logo" class="h-8 w-auto" />
-                            </a> -->
-                            <button type="button" command="close" commandfor="mobile-menu"
-                                class="-m-2.5 rounded-md p-2.5 text-gray-700">
-                                <span class="sr-only">Close menu</span>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                                    class="size-6">
-                                    <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="mt-6 flow-root">
-                            <div class="-my-6 divide-y divide-gray-500/10">
-                                <div class="space-y-2 py-6">
-                                    <a href="#features"
-                                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Features</a>
-                                    <a href="#pastprojects"
-                                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Past projects</a>
-                                    <a href="#process"
-                                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Process</a>
-                                    <a href="#testimonials"
-                                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Client
-                                        Feedback</a>
-                                    <a href="#pricing"
-                                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Pricing</a>
-                                </div>
-                                <div class="py-6">
-
-                                </div>
-                            </div>
-                        </div>
-                    </el-dialog-panel>
-                </div>
-            </dialog>
-        </el-dialog>
-
-  
-</header>
-
+    </header>
 
     <main class="pt-28">
+        <!-- Hero -->
+        <section id="features" class="relative px-6 lg:px-8 text-center">
+            <div class="mx-auto max-w-2xl py-24 sm:py-32 animate-fadeIn">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900">Turn Your
+                    Shopify Store Into a 24/7 Sales Machine</h1>
+                <p class="mt-6 text-lg sm:text-xl text-gray-600">We design and build Shopify stores that are fast,
+                    user-friendly, and built to convert. Stop losing sales to slow sites
+                    and clunky checkouts — start growing today..</p>
+                <div class="mt-10 flex items-center justify-center gap-4">
+                    <a href="#contact"
+                        class="rounded-md px-6 py-3 text-base font-semibold btn-accent shadow transform transition-transform hover:-translate-y-0.5">Book
+                        a
+                        Free Consultation</a>
+                    <a href="#what-we-provide" class="text-base font-medium text-gray-700 hover:underline">See features →</a>
+                </div>
+            </div>
+        </section>
 
-
-
-
-
-    <!-- Hero Section Option 3 (Fixed) -->
-<section id="features" class="relative min-h-[100vh] flex items-center justify-center text-white">
-  <div id="hero-bg" class="absolute inset-0"></div>
-  <div class="relative z-10 text-center max-w-4xl px-6">
-    <h1 class="text-5xl md:text-6xl font-extrabold leading-tight">
-  Turn Your Shopify Store Into a <span class="">24/7 Sales Machine</span>
-</h1>
-<p class="mt-6 text-xl text-gray-200 max-w-2xl mx-auto">
-    From startups to global brands — we craft Shopify experiences 
-  that are mobile-first, lightning-fast, and built to dominate your niche.
-</p>
-    <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-      <a href="#contact" class="btn-accent px-10 py-4 text-lg rounded-xl shadow-lg">Get Details</a>
-      <a href="#pastprojects" class="text-lg font-medium text-gray-300 hover:text-white hover:underline">
-        See Portfolio →
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- Vanta.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.net.min.js"></script>
-<script>
-VANTA.NET({
-  el: "#hero-bg",
-  mouseControls: true,
-  touchControls: true,
-  color: 0x0b66ff,
-  backgroundColor: 0x07162a,
-  points: 12.00,
-  maxDistance: 22.00,
-  spacing: 18.00
-})
-</script>
         <!-- Features -->
         <!-- What We Provide — Updated Tailwind HTML snippet -->
         <section id="what-we-provide" class="scroll-offset bg-gray-50 py-20 sm:py-24">
@@ -599,41 +487,39 @@ VANTA.NET({
                 <!-- Grid cards -->
                 <div class="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                     <!-- Card -->
-                   
-
-                    <div class="rounded-2xl bg-white p-8 shadow hover:bg-gray-900 hover:text-white transition-all text-center">
-  <h3 class="text-lg font-semibold">Custom themes & sections</h3>
-                        <p class="mt-3 text-sm">Pixel-perfect themes built to match your brand and convert
+                    <div class="rounded-2xl bg-white p-8 shadow hover:shadow-lg transition-shadow">
+                        <h3 class="text-lg font-semibold text-gray-900">Custom themes & sections</h3>
+                        <p class="mt-3 text-sm text-gray-600">Pixel-perfect themes built to match your brand and convert
                             visitors into customers.</p>
                     </div>
 
-                    <div class="rounded-2xl bg-white p-8 shadow hover:bg-gray-900 hover:text-white transition-all text-center">
-  <h3 class="text-lg font-semibold">Speed & performance</h3>
-                        <p class="mt-3 text-sm">Audits, optimizations and theme improvements for blazing
+                    <div class="rounded-2xl bg-white p-8 shadow hover:shadow-lg transition-shadow">
+                        <h3 class="text-lg font-semibold text-gray-900">Speed & performance</h3>
+                        <p class="mt-3 text-sm text-gray-600">Audits, optimizations and theme improvements for blazing
                             fast load times.</p>
                     </div>
 
-                    <div class="rounded-2xl bg-white p-8 shadow hover:bg-gray-900 hover:text-white transition-all text-center">
-  <h3 class="text-lg font-semibold">Conversion-focused product pages</h3>
-                        <p class="mt-3 text-sm">Optimized product layouts, trust signals, and
+                    <div class="rounded-2xl bg-white p-8 shadow hover:shadow-lg transition-shadow">
+                        <h3 class="text-lg font-semibold text-gray-900">Conversion-focused product pages</h3>
+                        <p class="mt-3 text-sm text-gray-600">Optimized product layouts, trust signals, and
                             call‑to‑actions that increase add‑to‑cart rates.</p>
                     </div>
 
-                    <div class="rounded-2xl bg-white p-8 shadow hover:bg-gray-900 hover:text-white transition-all text-center">
-  <h3 class="text-lg font-semibold">Checkout & cart optimization</h3>
-                        <p class="mt-3 text-sm">Frictionless checkout flows and smart upsells to reduce
+                    <div class="rounded-2xl bg-white p-8 shadow hover:shadow-lg transition-shadow">
+                        <h3 class="text-lg font-semibold text-gray-900">Checkout & cart optimization</h3>
+                        <p class="mt-3 text-sm text-gray-600">Frictionless checkout flows and smart upsells to reduce
                             abandonment and boost revenue.</p>
                     </div>
 
-                    <div class="rounded-2xl bg-white p-8 shadow hover:bg-gray-900 hover:text-white transition-all text-center">
-  <h3 class="text-lg font-semibold">SEO & migrations</h3>
-                       <p class="mt-3 text-sm">Safe migrations and SEO improvements so you keep and grow
+                    <div class="rounded-2xl bg-white p-8 shadow hover:shadow-lg transition-shadow">
+                        <h3 class="text-lg font-semibold text-gray-900">SEO & migrations</h3>
+                        <p class="mt-3 text-sm text-gray-600">Safe migrations and SEO improvements so you keep and grow
                             organic traffic.</p>
                     </div>
 
-                    <div class="rounded-2xl bg-white p-8 shadow hover:bg-gray-900 hover:text-white transition-all text-center">
-  <h3 class="text-lg font-semibold">Post‑launch support</h3>
-                        <p class="mt-3 text-sm">30 days included with rebuilds and ongoing retainers for
+                    <div class="rounded-2xl bg-white p-8 shadow hover:shadow-lg transition-shadow">
+                        <h3 class="text-lg font-semibold text-gray-900">Post‑launch support</h3>
+                        <p class="mt-3 text-sm text-gray-600">30 days included with rebuilds and ongoing retainers for
                             long‑term growth.</p>
                     </div>
                 </div>
@@ -660,83 +546,70 @@ VANTA.NET({
 
                             <figure
                                 class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
-                                <img src="images/1.png" alt="Project 1"
-                                
-                                
+                                <img src="images\1.png" alt="Project 1"
                                     class="w-full aspect-video object-cover transition-transform duration-500" />
                             </figure>
 
                             <figure
                                 class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
-                                <img src="images/2.png" alt="Project 2"
-                                
-                                
+                                <img src="images\2.png" alt="Project 2"
                                     class="w-full aspect-video object-cover transition-transform duration-300" />
                             </figure>
 
                             <figure
                                 class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
-                                <img src="images/3.png" alt="Project 3"
+                                <img src="images\3.png" alt="Project 3"
                                     class="w-full aspect-video object-cover transition-transform duration-300" />
                             </figure>
                             <figure
                                 class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
-                                <img src="images/4.png" 
-                                 alt="Project 4"
-                                    class="w-full aspect-video object-cover transition-transform duration-300" />
-                            </figure>
-
-                            <figure
-                                class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
-                                <img src="images/5.png" alt="Project 5"
-                                
+                                <img src="images\4.png" alt="Project 4"
                                     class="w-full aspect-video object-cover transition-transform duration-300" />
                             </figure>
 
                             <figure
                                 class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
-                                <img src="images/6.png" alt="Project 6"
-                               
-                                    class="w-full aspect-video object-cover transition-transform duration-300" />
-                            </figure>
-                            <figure
-                                class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
-                                <img src="images/7.png" alt="Project 7"
-                             
+                                <img src="images\5.png" alt="Project 5"
                                     class="w-full aspect-video object-cover transition-transform duration-300" />
                             </figure>
 
                             <figure
                                 class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
-                                <img src="images/8.png" alt="Project 8"
-                            
+                                <img src="images\6.png" alt="Project 6"
+                                    class="w-full aspect-video object-cover transition-transform duration-300" />
+                            </figure>
+                            <figure
+                                class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
+                                <img src="images\7.png" alt="Project 7"
                                     class="w-full aspect-video object-cover transition-transform duration-300" />
                             </figure>
 
                             <figure
                                 class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
-                                <img src="images/9.png" alt="Project 9"
-                            
-                                    class="w-full aspect-video object-cover transition-transform duration-300" />
-                            </figure>
-                            <figure
-                                class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
-                                <img src="images/10.png" alt="Project 10"
-                         
+                                <img src="images\8.png" alt="Project 8"
                                     class="w-full aspect-video object-cover transition-transform duration-300" />
                             </figure>
 
                             <figure
                                 class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
-                                <img src="images/11.png" alt="Project 11"
-                    
+                                <img src="images\9.png" alt="Project 9"
+                                    class="w-full aspect-video object-cover transition-transform duration-300" />
+                            </figure>
+                            <figure
+                                class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
+                                <img src="images\10.png" alt="Project 10"
                                     class="w-full aspect-video object-cover transition-transform duration-300" />
                             </figure>
 
                             <figure
                                 class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
-                                <img src="images/12.png" alt="Project 12"
-                  
+                                <img src="images\11.png" alt="Project 11"
+                                    class="w-full aspect-video object-cover transition-transform duration-300" />
+                            </figure>
+
+                            <figure
+                                class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
+                                <img src="images\12.png" alt="Project 12"
                                     class="w-full aspect-video object-cover transition-transform duration-300" />
                             </figure>
                             <!-- Add more figures as needed -->
@@ -750,9 +623,7 @@ VANTA.NET({
 
                 <!-- Lightbox Modal -->
                 <!-- Lightbox Modal -->
-<!-- Lightbox Modal -->
-<div id="lightbox" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-[9999]">
-
+<div id="lightbox" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50">
   <button id="closeLightbox" class="absolute top-6 right-6 text-white text-3xl font-bold">&times;</button>
   <button id="prevLightbox" class="absolute left-6 text-white text-3xl">&#10094;</button>
   
@@ -802,25 +673,18 @@ VANTA.NET({
   }
 
   function openLightbox(index) {
-  currentIndex = index;
-  showImage(currentIndex);
-  lightbox.classList.remove("hidden");
-  lightbox.classList.add("flex");
-  document.body.style.overflow = "hidden"; // disable scroll
+    currentIndex = index;
+    showImage(currentIndex);
+    lightbox.classList.remove("hidden");
+    lightbox.classList.add("flex");
+    document.body.style.overflow = "hidden"; // disable scroll
+  }
 
-  // 👉 Hide the header/navbar
-  document.querySelector("header").style.display = "none";
-}
-
-function closeLightbox() {
-  lightbox.classList.add("hidden");
-  lightbox.classList.remove("flex");
-  document.body.style.overflow = ""; // enable scroll
-
-  // 👉 Show the header/navbar again
-  document.querySelector("header").style.display = "block";
-}
-
+  function closeLightbox() {
+    lightbox.classList.add("hidden");
+    lightbox.classList.remove("flex");
+    document.body.style.overflow = ""; // enable scroll
+  }
 
   function showPrev() {
     currentIndex = (currentIndex - 1 + figures.length) % figures.length;
@@ -929,7 +793,71 @@ function closeLightbox() {
 
     
     <!-- Your Code Starts Here -->
-  
+    <header class="absolute inset-x-0 top-0 z-50">
+        <nav aria-label="Global" class="flex items-center justify-between p-6 lg:px-8">
+            <div class="flex lg:flex-1">
+
+            </div>
+            <div class="flex lg:hidden">
+                <button type="button" command="show-modal" commandfor="mobile-menu"
+                    class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+                    <span class="sr-only">Open main menu</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6">
+                        <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+
+        </nav>
+
+        <!-- Mobile Menu -->
+        <el-dialog>
+            <dialog id="mobile-menu" class="backdrop:bg-transparent lg:hidden">
+                <div tabindex="0" class="fixed inset-0 focus:outline-none">
+                    <el-dialog-panel
+                        class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+                        <div class="flex items-center justify-between">
+                            <!-- <a href="#" class="-m-1.5 p-1.5">
+                                <span class="sr-only">Your Company</span>
+                                <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
+                                    alt="Logo" class="h-8 w-auto" />
+                            </a> -->
+                            <button type="button" command="close" commandfor="mobile-menu"
+                                class="-m-2.5 rounded-md p-2.5 text-gray-700">
+                                <span class="sr-only">Close menu</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                    class="size-6">
+                                    <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="mt-6 flow-root">
+                            <div class="-my-6 divide-y divide-gray-500/10">
+                                <div class="space-y-2 py-6">
+                                    <a href="#features"
+                                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Features</a>
+                                    <a href="#portfolio"
+                                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Portfolio</a>
+                                    <a href="#process"
+                                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Process</a>
+                                    <a href="#testamonials"
+                                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Client
+                                        Feedback</a>
+                                    <a href="#pricing"
+                                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Pricing</a>
+                                </div>
+                                <div class="py-6">
+
+                                </div>
+                            </div>
+                        </div>
+                    </el-dialog-panel>
+                </div>
+            </dialog>
+        </el-dialog>
+    </header>
+
     <!-- Hero Section -->
 
 
@@ -1245,31 +1173,6 @@ function closeLightbox() {
             </div>
         </div>
     </footer>
-
-    <!-- Sticky Contact Button -->
-<!-- Sticky Contact Button (Mobile Only) -->
-<!-- Sticky Contact Button (Mobile Only - Bottom Right) -->
-<!-- Sticky Contact Button (Mobile Only - Bottom Right) -->
-<!-- Sticky Contact Button (Mobile Only - Top Right) -->
-<a href="#contact"
-   class="fixed top-20 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-gray-200 text-white shadow-lg lg:hidden hover:scale-105 transition transform">
-   📞 
-</a>
-
-
-
-
-   ✉️
-</a>
-
-
-
-
-
-
-
-
-
     <script>
        
         // Footer year
