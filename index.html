@@ -425,6 +425,15 @@
   opacity: 0;
   transform: translateX(40px);
 }
+/* Blur effect when lightbox is open */
+.header-blur {
+  filter: blur(6px);
+  transition: filter 0.3s ease;
+}
+#lightbox {
+  z-index: 99999 !important;
+}
+
 
     </style>
     
@@ -686,7 +695,9 @@ VANTA.NET({
 
                 <!-- Lightbox Modal -->
                 <!-- Lightbox Modal -->
-<div id="lightbox" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50">
+<!-- Lightbox Modal -->
+<div id="lightbox" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-[9999]">
+
   <button id="closeLightbox" class="absolute top-6 right-6 text-white text-3xl font-bold">&times;</button>
   <button id="prevLightbox" class="absolute left-6 text-white text-3xl">&#10094;</button>
   
@@ -736,18 +747,25 @@ VANTA.NET({
   }
 
   function openLightbox(index) {
-    currentIndex = index;
-    showImage(currentIndex);
-    lightbox.classList.remove("hidden");
-    lightbox.classList.add("flex");
-    document.body.style.overflow = "hidden"; // disable scroll
-  }
+  currentIndex = index;
+  showImage(currentIndex);
+  lightbox.classList.remove("hidden");
+  lightbox.classList.add("flex");
+  document.body.style.overflow = "hidden"; // disable scroll
 
-  function closeLightbox() {
-    lightbox.classList.add("hidden");
-    lightbox.classList.remove("flex");
-    document.body.style.overflow = ""; // enable scroll
-  }
+  // 👉 Hide the header/navbar
+  document.querySelector("header").style.display = "none";
+}
+
+function closeLightbox() {
+  lightbox.classList.add("hidden");
+  lightbox.classList.remove("flex");
+  document.body.style.overflow = ""; // enable scroll
+
+  // 👉 Show the header/navbar again
+  document.querySelector("header").style.display = "block";
+}
+
 
   function showPrev() {
     currentIndex = (currentIndex - 1 + figures.length) % figures.length;
@@ -856,71 +874,7 @@ VANTA.NET({
 
     
     <!-- Your Code Starts Here -->
-    <header class="absolute inset-x-0 top-0 z-50">
-        <nav aria-label="Global" class="flex items-center justify-between p-6 lg:px-8">
-            <div class="flex lg:flex-1">
-
-            </div>
-            <div class="flex lg:hidden">
-                <button type="button" command="show-modal" commandfor="mobile-menu"
-                    class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
-                    <span class="sr-only">Open main menu</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="size-6">
-                        <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                </button>
-            </div>
-
-        </nav>
-
-        <!-- Mobile Menu -->
-        <el-dialog>
-            <dialog id="mobile-menu" class="backdrop:bg-transparent lg:hidden">
-                <div tabindex="0" class="fixed inset-0 focus:outline-none">
-                    <el-dialog-panel
-                        class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-                        <div class="flex items-center justify-between">
-                            <!-- <a href="#" class="-m-1.5 p-1.5">
-                                <span class="sr-only">Your Company</span>
-                                <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-                                    alt="Logo" class="h-8 w-auto" />
-                            </a> -->
-                            <button type="button" command="close" commandfor="mobile-menu"
-                                class="-m-2.5 rounded-md p-2.5 text-gray-700">
-                                <span class="sr-only">Close menu</span>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                                    class="size-6">
-                                    <path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="mt-6 flow-root">
-                            <div class="-my-6 divide-y divide-gray-500/10">
-                                <div class="space-y-2 py-6">
-                                    <a href="#features"
-                                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Features</a>
-                                    <a href="#portfolio"
-                                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Portfolio</a>
-                                    <a href="#process"
-                                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Process</a>
-                                    <a href="#testamonials"
-                                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Client
-                                        Feedback</a>
-                                    <a href="#pricing"
-                                        class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Pricing</a>
-                                </div>
-                                <div class="py-6">
-
-                                </div>
-                            </div>
-                        </div>
-                    </el-dialog-panel>
-                </div>
-            </dialog>
-        </el-dialog>
-    </header>
-
+  
     <!-- Hero Section -->
 
 
