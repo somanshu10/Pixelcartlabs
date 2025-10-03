@@ -434,32 +434,32 @@
 <body class="bg-white text-gray-800">
     <!-- Sticky header -->
 <header class="fixed inset-x-0 top-0 z-50 bg-white shadow-sm">
-  <nav class="flex items-center justify-between px-6 py-6 lg:px-10 lg:py-8">
+  <nav class="flex items-center justify-between px-4 py-1 lg:px-6 lg:py-2">
     
-    <!-- LOGO (Extra Large & Always Visible) -->
-    <div class="flex items-center">
-      <a href="/" class="flex items-center">
-        <img src="images/Pixel.png" alt="PixelCartLabs Logo"
-             class="h-20 w-auto sm:h-28 md:h-32 lg:h-36 xl:h-40" />
-        <span class="ml-5 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-accent hidden sm:inline">
-        
-        </span>
-      </a>
-    </div>
+    <!-- LOGO (Big but compact header) -->
+   <!-- LOGO (Centered on Mobile, Left on Desktop) -->
+<div class="flex items-center justify-center lg:justify-start flex-1">
+  <a href="/" class="flex items-center">
+    <img src="images/Pixel.png" alt="PixelCartLabs Logo"
+         class="h-32 w-auto sm:h-32 md:h-32 lg:h-32 xl:h-32" />
+   
+  </a>
+</div>
+
 
     <!-- Desktop Navigation -->
-    <div class="hidden lg:flex lg:gap-x-8 lg:items-center">
-      <a href="#features" class="text-lg font-medium text-gray-700 hover:text-accent">Features</a>
-      <a href="#pastprojects" class="text-lg font-medium text-gray-700 hover:text-accent">Portfolio</a>
-      <a href="#process" class="text-lg font-medium text-gray-700 hover:text-accent">Process</a>
-      <a href="#pricing" class="text-lg font-medium text-gray-700 hover:text-accent">Pricing</a>
-      <a href="#faq" class="text-lg font-medium text-gray-700 hover:text-accent">FAQ</a>
-      <a href="#testimonials" class="text-lg font-medium text-gray-700 hover:text-accent">Testimonials</a>
+    <div class="hidden lg:flex lg:gap-x-6 lg:items-center">
+      <a href="#features" class="text-sm font-medium text-gray-700 hover:text-accent">Features</a>
+      <a href="#pastprojects" class="text-sm font-medium text-gray-700 hover:text-accent">Portfolio</a>
+      <a href="#process" class="text-sm font-medium text-gray-700 hover:text-accent">Process</a>
+      <a href="#pricing" class="text-sm font-medium text-gray-700 hover:text-accent">Pricing</a>
+      <a href="#faq" class="text-sm font-medium text-gray-700 hover:text-accent">FAQ</a>
+      <a href="#testimonials" class="text-sm font-medium text-gray-700 hover:text-accent">Testimonials</a>
     </div>
 
     <!-- Contact Button (Desktop Only) -->
     <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-      <a href="#contact" class="inline-block rounded-md px-6 py-3 text-lg font-semibold btn-accent shadow">
+      <a href="#contact" class="inline-block rounded-md px-4 py-2 text-sm font-semibold btn-accent shadow">
         Contact
       </a>
     </div>
@@ -467,9 +467,9 @@
     <!-- Mobile Menu Button -->
     <div class="lg:hidden">
       <button type="button" command="show-modal" commandfor="mobile-menu"
-        class="inline-flex items-center justify-center rounded-md p-3 text-gray-700">
+        class="inline-flex items-center justify-center rounded-md p-2 text-gray-700">
         <span class="sr-only">Open main menu</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-8 h-8">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-7 h-7">
           <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
                 stroke-linecap="round" stroke-linejoin="round" />
         </svg>
