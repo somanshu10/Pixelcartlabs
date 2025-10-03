@@ -461,7 +461,10 @@
   const header = document.getElementById("siteHeader");
 
   window.addEventListener("scroll", () => {
-    if (window.scrollY > lastScrollY) {
+    if (window.scrollY === 0) {
+      // 👉 Always show header at very top
+      header.style.transform = "translateY(0)";
+    } else if (window.scrollY > lastScrollY) {
       // 👉 Scrolling down → hide header
       header.style.transform = "translateY(-100%)";
     } else {
@@ -1268,7 +1271,7 @@ function closeLightbox() {
 <!-- Sticky Contact Button (Mobile Only - Bottom Right) -->
 <!-- Sticky Contact Button (Mobile Only - Top Right) -->
 <a href="#contact"
-   class="fixed top-20 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-gray-200 text-white shadow-lg lg:hidden hover:scale-105 transition transform">
+   class="fixed bottom-20 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-gray-200 text-white shadow-lg lg:hidden hover:scale-105 transition transform">
    📞 
 </a>
 
