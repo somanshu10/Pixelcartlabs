@@ -5,9 +5,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PixelCartLabs</title>
-    <!-- Tailwind CSS CDN -->
+    <!-- Tailwind CSS config and CDN -->
+    <script>tailwind = window.tailwind || {}; tailwind.config = { darkMode: 'class' };</script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
+    <!-- SEO & Social -->
+    <meta name="description" content="PixelCartLabs builds fast, conversion-focused Shopify stores with modern UX and performance." />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="/" />
+    <link rel="icon" href="images/logo.png" type="image/png" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b1324" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="PixelCartLabs — Shopify Development Studio" />
+    <meta property="og:description" content="We craft fast, mobile-first Shopify experiences that convert." />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="images/logo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PixelCartLabs — Shopify Development Studio" />
+    <meta name="twitter:description" content="We craft fast, mobile-first Shopify experiences that convert." />
+    <meta name="twitter:image" content="images/logo.png" />
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -27,6 +45,7 @@ src="https://www.facebook.com/tr?id=806840448945200&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
 <!-- End Meta Pixel Code -->
     <style>
+        html { scroll-behavior: smooth; }
         :root {
             --accent: #082041;
             /* dark blue */
@@ -260,6 +279,17 @@ src="https://www.facebook.com/tr?id=806840448945200&ev=PageView&noscript=1"
             border-radius: 50%;
         }
 
+        /* Sticky header effects on scroll */
+        .header-scrolled {
+            background: rgba(255, 255, 255, 0.85);
+            -webkit-backdrop-filter: saturate(180%) blur(8px);
+            backdrop-filter: saturate(180%) blur(8px);
+            box-shadow: 0 8px 20px rgba(8, 32, 65, 0.06);
+        }
+        .dark .header-scrolled {
+            background: rgba(15, 23, 42, 0.75);
+        }
+
         /* small helper */
         .opt1-hidden {
             opacity: 0;
@@ -463,60 +493,85 @@ src="https://www.facebook.com/tr?id=806840448945200&ev=PageView&noscript=1"
   50% { transform: translateY(-10px) scale(1.1); opacity: 1; }
 }
 .animate-floatSlow { animation: floatSlow 6s ease-in-out infinite; }
-@keyframes floatSlow {
-  0%, 100% { transform: translateY(0) scale(1); opacity: .6; }
-  50% { transform: translateY(-10px) scale(1.1); opacity: 1; }
-}
-.animate-floatSlow { animation: floatSlow 6s ease-in-out infinite; }
 
     </style>
     
 </head>
 
 
-<body class="bg-white text-gray-800">
+<body class="bg-white text-gray-800 dark:bg-gray-950 dark:text-gray-100">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-black focus:text-white focus:px-3 focus:py-2">Skip to content</a>
     <!-- Sticky header -->
-  <!-- <header class="fixed inset-x-0 top-0 bottom-0 shadow-sm ">
-  <nav class="flex items-center justify-between px-3 py-1 sm:px-4 sm:py-2 lg:px-6 lg:py-3"> -->
-    
-<header id="siteHeader" class="fixed inset-x-0 top-0 z-50 bg-white shadow-sm transition-transform duration-300">
-  <nav class="flex items-center justify-between px-3 py-1 sm:px-4 sm:py-2 lg:px-6 lg:py-3">
+<header id="siteHeader" class="fixed inset-x-0 top-0 z-50 bg-white dark:bg-gray-900 shadow-sm transition-transform duration-300">
+  <nav aria-label="Primary" class="flex items-center justify-between px-3 py-1 sm:px-4 sm:py-2 lg:px-6 lg:py-3">
 
     <!-- LOGO -->
     <div class="flex items-center justify-center lg:justify-start flex-1">
       <a href="/" class="flex items-center">
         <img src="images/logo.png" alt="PixelCartLabs Logo"
              class="justify-center items-center sm:h-32 md:h-32 lg:h-32" />
+      </a>
     </div>
     <!-- Nav links / hamburger remain same -->
 
 <script>
-  const header = document.getElementById("siteHeader");
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY === 0) {
-      // At the very top → show header
-      header.style.transform = "translateY(0)";
-    } else {
-      // Scrolling anywhere down or up → hide header
-      header.style.transform = "translateY(-100%)";
+  const header = document.getElementById('siteHeader');
+  let lastScrollY = window.scrollY || 0;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY || 0;
+    if (y <= 0) {
+      header.style.transform = 'translateY(0)';
+      header.classList.remove('header-scrolled');
+      lastScrollY = y;
+      return;
     }
-  });
+    header.classList.add('header-scrolled');
+    if (y > lastScrollY + 5) {
+      // scrolling down
+      header.style.transform = 'translateY(-100%)';
+    } else if (y < lastScrollY - 5) {
+      // scrolling up
+      header.style.transform = 'translateY(0)';
+    }
+    lastScrollY = y;
+  }, { passive: true });
+
+  // Theme toggle
+  (function () {
+    const btn = document.getElementById('themeToggle');
+    if (!btn) return;
+    const root = document.documentElement;
+    const stored = localStorage.getItem('theme');
+    if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      root.classList.add('dark');
+    }
+    btn.addEventListener('click', () => {
+      const isDark = root.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+  })();
 </script>
 
 
     <!-- Desktop Navigation -->
     <div class="hidden lg:flex lg:gap-x-6 lg:items-center">
-      <a href="#features" class="text-sm font-bold text-gray-700 hover:text-accent  hover-tilt hover:text-black hover:underline">Features</a>
-      <a href="#pastprojects" class="text-sm font-bold text-gray-700 hover:text-accent hover-tilt hover:text-black hover:underline">Portfolio</a>
-      <a href="#process" class="text-sm font-bold text-gray-700 hover:text-accent hover-tilt hover:text-black hover:underline">Process</a>
-      <a href="#pricing" class="text-sm font-bold text-gray-700 hover:text-accent hover-tilt hover:text-black hover:underline">Pricing</a>
-      <a href="#faq" class="text-sm font-bold text-gray-700 hover:text-accent hover-tilt hover:text-black hover:underline">FAQ</a>
-      <a href="#testimonials" class="text-sm font-bold text-gray-700 hover:text-accent hover-tilt hover:text-black hover:underline  ">Testimonials</a>
+      <a href="#features" class="text-sm font-bold text-gray-700 hover:text-accent dark:text-gray-200 dark:hover:text-white hover:underline">Features</a>
+      <a href="#pastprojects" class="text-sm font-bold text-gray-700 hover:text-accent dark:text-gray-200 dark:hover:text-white hover:underline">Portfolio</a>
+      <a href="#process" class="text-sm font-bold text-gray-700 hover:text-accent dark:text-gray-200 dark:hover:text-white hover:underline">Process</a>
+      <a href="#pricing" class="text-sm font-bold text-gray-700 hover:text-accent dark:text-gray-200 dark:hover:text-white hover:underline">Pricing</a>
+      <a href="#faq" class="text-sm font-bold text-gray-700 hover:text-accent dark:text-gray-200 dark:hover:text-white hover:underline">FAQ</a>
+      <a href="#testimonials" class="text-sm font-bold text-gray-700 hover:text-accent dark:text-gray-200 dark:hover:text-white hover:underline">Testimonials</a>
     </div>
 
     <!-- Contact Button (Desktop Only) -->
-    <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+    <div class="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-3">
+      <button id="themeToggle" type="button" aria-label="Toggle dark mode" class="rounded-md p-2 ring-1 ring-gray-200 text-gray-700 hover:text-accent dark:text-gray-200 dark:ring-gray-700">
+        <span class="sr-only">Toggle dark mode</span>
+        <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path d="M12 3v2m0 14v2m9-9h-2M5 12H3m14.95 6.95-1.414-1.414M7.05 7.05 5.636 5.636m12.728 0-1.414 1.414M7.05 16.95 5.636 18.364" stroke-linecap="round" />
+          <circle cx="12" cy="12" r="4" />
+        </svg>
+      </button>
       <a href="#contact" class="inline-block rounded-md px-4 py-2 text-sm font-semibold btn-accent shadow">
         Contact
       </a>
@@ -592,7 +647,7 @@ src="https://www.facebook.com/tr?id=806840448945200&ev=PageView&noscript=1"
 </header>
 
 
-    <main class="pt-28">
+    <main id="main-content" class="pt-28">
 
 
 
@@ -610,7 +665,7 @@ src="https://www.facebook.com/tr?id=806840448945200&ev=PageView&noscript=1"
   that are mobile-first, lightning-fast, and built to dominate your niche.
 </p>
     <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-      <a href="#contact" class="btn-accent px-10 py-4 text-lg rounded-xl shadow-lg bg-white text-black hover-tilt">Get Details</a>
+      <a href="#contact" class="btn-accent px-10 py-4 text-lg rounded-xl shadow-lg hover-tilt">Get Details</a>
       <a href="#what-we-provide" class="text-lg font-medium text-gray-300 hover:text-white hover:underline">
         Explore →
       </a>
@@ -619,25 +674,29 @@ src="https://www.facebook.com/tr?id=806840448945200&ev=PageView&noscript=1"
 </section>
 
 <!-- Vanta.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.net.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.net.min.js" defer></script>
 <script>
-VANTA.NET({
-  el: "#hero-bg",
-  mouseControls: true,
-  touchControls: true,
-  color: 0x0b66ff,
-  backgroundColor: 0x07162a,
-  points: 12.00,
-  maxDistance: 22.00,
-  spacing: 18.00
-})
+window.addEventListener('DOMContentLoaded', function () {
+  if (window.VANTA && document.getElementById('hero-bg')) {
+    VANTA.NET({
+      el: '#hero-bg',
+      mouseControls: true,
+      touchControls: true,
+      color: 0x0b66ff,
+      backgroundColor: 0x07162a,
+      points: 12.00,
+      maxDistance: 22.00,
+      spacing: 18.00
+    });
+  }
+});
 </script>
 
  <!-- ============================= -->
 <!-- MODERN "WHAT WE PROVIDE" -->
 <!-- ============================= -->
-<section id="what-we-provide" class="scroll-offset relative py-24 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+<section id="what-we-provide" class="scroll-offset relative py-24 bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900 overflow-hidden">
   <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_top_right,_#0b66ff15,_transparent_60%)]"></div>
 
   <div class="relative mx-auto max-w-6xl px-6 text-center">
@@ -789,7 +848,7 @@ if (procLine) {
 
        
                 <!-- Past Projects Grid -->
-                <section id="pastprojects" class="scroll-offset bg-white py-20 sm:py-24">
+<section id="pastprojects" class="scroll-offset bg-white dark:bg-gray-950 py-20 sm:py-24">
                     <div class="mx-auto lg-fix-max-width px-6 lg:px-8">
                         <div class="mx-auto max-w-2xl text-center">
                             <h2 class="text-base font-semibold text-accent">Past Projects</h2>
@@ -807,7 +866,7 @@ if (procLine) {
 
                             <figure
                                 class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
-                                <img src="images/1.png" alt="Project 1"
+                                <img src="images/1.png" alt="Project 1" loading="lazy" decoding="async"
                                 
                                 
                                     class="w-full aspect-video object-cover transition-transform duration-500" />
@@ -815,7 +874,7 @@ if (procLine) {
 
                             <figure
                                 class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
-                                <img src="images/2.png" alt="Project 2"
+                                <img src="images/2.png" alt="Project 2" loading="lazy" decoding="async"
                                 
                                 
                                     class="w-full aspect-video object-cover transition-transform duration-300" />
@@ -823,66 +882,66 @@ if (procLine) {
 
                             <figure
                                 class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
-                                <img src="images/3.png" alt="Project 3"
+                                <img src="images/3.png" alt="Project 3" loading="lazy" decoding="async"
                                     class="w-full aspect-video object-cover transition-transform duration-300" />
                             </figure>
                             <figure
                                 class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
-                                <img src="images/4.png" 
+                                <img src="images/4.png" loading="lazy" decoding="async"
                                  alt="Project 4"
                                     class="w-full aspect-video object-cover transition-transform duration-300" />
                             </figure>
 
                             <figure
                                 class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
-                                <img src="images/5.png" alt="Project 5"
+                                <img src="images/5.png" alt="Project 5" loading="lazy" decoding="async"
                                 
                                     class="w-full aspect-video object-cover transition-transform duration-300" />
                             </figure>
 
                             <figure
                                 class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
-                                <img src="images/6.png" alt="Project 6"
+                                <img src="images/6.png" alt="Project 6" loading="lazy" decoding="async"
                                
                                     class="w-full aspect-video object-cover transition-transform duration-300" />
                             </figure>
                             <figure
                                 class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
-                                <img src="images/7.png" alt="Project 7"
+                                <img src="images/7.png" alt="Project 7" loading="lazy" decoding="async"
                              
                                     class="w-full aspect-video object-cover transition-transform duration-300" />
                             </figure>
 
                             <figure
                                 class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
-                                <img src="images/8.png" alt="Project 8"
+                                <img src="images/8.png" alt="Project 8" loading="lazy" decoding="async"
                             
                                     class="w-full aspect-video object-cover transition-transform duration-300" />
                             </figure>
 
                             <figure
                                 class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
-                                <img src="images/9.png" alt="Project 9"
+                                <img src="images/9.png" alt="Project 9" loading="lazy" decoding="async"
                             
                                     class="w-full aspect-video object-cover transition-transform duration-300" />
                             </figure>
                             <figure
                                 class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
-                                <img src="images/10.png" alt="Project 10"
+                                <img src="images/10.png" alt="Project 10" loading="lazy" decoding="async"
                          
                                     class="w-full aspect-video object-cover transition-transform duration-300" />
                             </figure>
 
                             <figure
                                 class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
-                                <img src="images/11.png" alt="Project 11"
+                                <img src="images/11.png" alt="Project 11" loading="lazy" decoding="async"
                     
                                     class="w-full aspect-video object-cover transition-transform duration-300" />
                             </figure>
 
                             <figure
                                 class="portfolio-figure reveal-mask rounded-xl overflow-hidden shadow-lg cursor-pointer">
-                                <img src="images/12.png" alt="Project 12"
+                                <img src="images/12.png" alt="Project 12" loading="lazy" decoding="async"
                   
                                     class="w-full aspect-video object-cover transition-transform duration-300" />
                             </figure>
@@ -907,7 +966,7 @@ if (procLine) {
     <img id="lightboxImg" src="" alt="Project preview"
          class="lightbox-img max-h-[70vh] max-w-[90vw] rounded-lg shadow-lg mx-auto" />
     <p id="lightboxCaption" class="mt-4 text-white text-lg"></p>
-    <a id="lightboxLink" href="#" target="_blank"
+  <a id="lightboxLink" href="#" target="_blank" rel="noopener"
        class="mt-2 inline-block text-sm text-accent bg-white px-4 py-2 rounded shadow hover:opacity-90">View Project</a>
   </div>
 
@@ -1072,7 +1131,7 @@ function closeLightbox() {
                         <div class="px-8 pt-8 sm:px-10 sm:pt-10">
                             <p class="mt-2 text-lg font-medium tracking-tight text-white max-lg:text-center">Performance
                             </p>
-                            <p class="mt-2 max-w-lg text-sm/6 text-gray-200 max-lg:text-center">Our development process prioritizes speed with clean code, image optimization, and Core Web Vitals improvements so your pages load in seconds..</p>
+            <p class="mt-2 max-w-lg text-sm/6 text-gray-200 max-lg:text-center">Our development process prioritizes speed with clean code, image optimization, and Core Web Vitals improvements so your pages load in seconds.</p>
                         </div>
                         <div
                             class="flex flex-1 items-center justify-center px-8 max-lg:pt-10 max-lg:pb-12 sm:px-10 lg:pb-2">
@@ -1171,7 +1230,7 @@ function closeLightbox() {
     </section>
 
     <!-- FAQ -->
-    <section id="faq" class="scroll-offset bg-gray-50 py-16 sm:py-20">
+    <section id="faq" class="scroll-offset bg-gray-50 dark:bg-gray-900 py-16 sm:py-20">
         <div class="mx-auto max-w-4xl px-6 lg:px-8">
             <div class="text-center">
                 <h2 class="text-base font-semibold text-accent">FAQ</h2>
@@ -1204,7 +1263,7 @@ function closeLightbox() {
     </section>
 
     <!-- Testimonials -->
-    <section id="testimonials" class="scroll-offset bg-white py-16 sm:py-20">
+<section id="testimonials" class="scroll-offset bg-white dark:bg-gray-950 py-16 sm:py-20">
         <div class="mx-auto lg-fix-max-width px-6 lg:px-8 text-center">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900">What clients say</h2>
             <p class="mt-3 text-gray-600">Trusted by founders and brands.</p>
@@ -1232,15 +1291,15 @@ function closeLightbox() {
 
             <div class="mt-8 flex items-center justify-center gap-10">
                 <div class="text-center text-sm text-gray-500">
-                    <div class="text-2xl font-semibold text-gray-900">+3x</div>
+                    <div class="text-2xl font-semibold text-gray-900 dark:text-white">+3x</div>
                     <div>Avg conversion uplift</div>
                 </div>
                 <div class="text-center text-sm text-gray-500">
-                    <div class="text-2xl font-semibold text-gray-900">20%+</div>
+                    <div class="text-2xl font-semibold text-gray-900 dark:text-white">20%+</div>
                     <div>AOV increase</div>
                 </div>
                 <div class="text-center text-sm text-gray-500">
-                    <div class="text-2xl font-semibold text-gray-900">30+</div>
+                    <div class="text-2xl font-semibold text-gray-900 dark:text-white">30+</div>
                     <div>Stores launched</div>
                 </div>
             </div>
@@ -1262,7 +1321,7 @@ function closeLightbox() {
 
 
 <!-- Contact Form Section -->
-<section id="contact" class="scroll-offset bg-gray-50 py-16 sm:py-20">
+<section id="contact" class="scroll-offset bg-gray-50 dark:bg-gray-900 py-16 sm:py-20">
   <div class="mx-auto max-w-3xl px-6 lg:px-8 text-center">
     <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Get in Touch</h2>
     <p class="mt-3 text-gray-600">Fill out the form and we’ll get back to you soon.</p>
@@ -1270,14 +1329,14 @@ function closeLightbox() {
     <form id="contact-form" class="mt-8 grid gap-6 text-left">
       <!-- Name -->
       <div>
-        <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+        <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Full Name</label>
         <input type="text" id="name" name="user_name" required
                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-accent focus:ring-accent sm:text-sm"/>
       </div>
 <!-- Mobile Number -->
 <!-- Mobile Number (Optional) -->
 <div>
-  <label for="phone" class="block text-sm font-medium text-gray-700">Mobile Number <span class="text-gray-400">(optional)</span></label>
+  <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Mobile Number <span class="text-gray-400">(optional)</span></label>
   <input type="tel" id="phone" name="user_phone"
          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-accent focus:ring-accent sm:text-sm"
          placeholder=""/>
@@ -1286,14 +1345,14 @@ function closeLightbox() {
 
       <!-- Email -->
       <div>
-        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+        <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Email</label>
         <input type="email" id="email" name="user_email" required
                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-accent focus:ring-accent sm:text-sm"/>
       </div>
 
       <!-- Message -->
       <div>
-        <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+        <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Message</label>
         <textarea id="message" name="message" rows="5" required
                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-accent focus:ring-accent sm:text-sm"></textarea>
       </div>
@@ -1305,7 +1364,7 @@ function closeLightbox() {
       </button>
     </form>
 
-    <p id="form-status" class="mt-4 text-sm"></p>
+    <p id="form-status" class="mt-4 text-sm" aria-live="polite" role="status"></p>
   </div>
 </section>
 
@@ -1352,15 +1411,9 @@ function closeLightbox() {
 <!-- Sticky Contact Button (Mobile Only - Bottom Right) -->
 <!-- Sticky Contact Button (Mobile Only - Bottom Right) -->
 <!-- Sticky Contact Button (Mobile Only - Top Right) -->
-<a href="#contact"
-   class="fixed bottom-20 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-gray-200 text-white shadow-lg  hover:scale-105 transition transform">
-   📞 
-</a>
-
-
-
-
-   ✉️
+<a href="#contact" aria-label="Contact"
+   class="fixed bottom-20 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-accent text-white shadow-lg  hover:scale-105 transition transform lg:hidden">
+   📞
 </a>
 
 
@@ -1635,26 +1688,31 @@ function closeLightbox() {
 
     </script>
     <!-- EmailJS SDK -->
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js" defer></script>
 <script>
-  // Init EmailJS
-  (function(){
-    emailjs.init("ivWAEQ5FjkNAD67sF"); // Replace with your EmailJS Public Key
-  })();
-
-  // Form submit handler
-  document.getElementById("contact-form").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    emailjs.sendForm("service_m5tq96g", "template_wj4629n", this)
-      .then(() => {
-        document.getElementById("form-status").textContent = "✅ Message sent successfully!";
-        document.getElementById("form-status").className = "mt-4 text-green-600 text-sm";
-        this.reset();
-      }, (err) => {
-        document.getElementById("form-status").textContent = "❌ Failed to send. Try again.";
-        document.getElementById("form-status").className = "mt-4 text-red-600 text-sm";
-      });
+  // Init EmailJS and contact form listener
+  window.addEventListener('DOMContentLoaded', function () {
+    if (window.emailjs) {
+      emailjs.init("ivWAEQ5FjkNAD67sF"); // Replace with your EmailJS Public Key
+    }
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("form-status");
+    if (!form) return;
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      if (!window.emailjs) { status.textContent = "❌ Email service unavailable."; return; }
+      status.textContent = "Sending...";
+      status.className = "mt-4 text-gray-600 text-sm";
+      emailjs.sendForm("service_m5tq96g", "template_wj4629n", form)
+        .then(() => {
+          status.textContent = "✅ Message sent successfully!";
+          status.className = "mt-4 text-green-600 text-sm";
+          form.reset();
+        }, () => {
+          status.textContent = "❌ Failed to send. Try again.";
+          status.className = "mt-4 text-red-600 text-sm";
+        });
+    });
   });
 </script>
 
