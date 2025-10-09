@@ -485,29 +485,25 @@ src="https://www.facebook.com/tr?id=806840448945200&ev=PageView&noscript=1"
     <!-- LOGO -->
     <div class="flex items-center justify-center lg:justify-start flex-1">
       <a href="/" class="flex items-center">
-        <img src="images/Pixel.png" alt="PixelCartLabs Logo"
-             class="h-24 w-auto sm:h-32 md:h-32 lg:h-32" />
+        <img src="images/logo.png" alt="PixelCartLabs Logo"
+             class="justify-center items-center sm:h-32 md:h-32 lg:h-32" />
     </div>
     <!-- Nav links / hamburger remain same -->
 
 <script>
-  let lastScrollY = window.scrollY;
   const header = document.getElementById("siteHeader");
 
   window.addEventListener("scroll", () => {
     if (window.scrollY === 0) {
-      // 👉 Always show header at very top
+      // At the very top → show header
       header.style.transform = "translateY(0)";
-    } else if (window.scrollY > lastScrollY) {
-      // 👉 Scrolling down → hide header
-      header.style.transform = "translateY(-100%)";
     } else {
-      // 👉 Scrolling up → show header
-      header.style.transform = "translateY(0)";
+      // Scrolling anywhere down or up → hide header
+      header.style.transform = "translateY(-100%)";
     }
-    lastScrollY = window.scrollY;
   });
 </script>
+
 
     <!-- Desktop Navigation -->
     <div class="hidden lg:flex lg:gap-x-6 lg:items-center">
